@@ -10,7 +10,7 @@ const BoardCreate: React.FC<BoardEditorProps & FormikProps<FormValues>> = (props
 
 const BoardCreateWrapper = withFormik<BoardEditorProps, FormValues>({
   mapPropsToValues: () => {
-    return { name: "", description: "" };
+    return { name: "", description: "", estimatedTime: ""  };
   },
   validationSchema: validationSchema,
   handleSubmit: async (submittedData, { setSubmitting, setStatus }) => {

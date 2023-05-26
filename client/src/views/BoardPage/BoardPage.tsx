@@ -140,6 +140,9 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
             <FaTags />
             <span>Tags</span>
           </Button>
+          <Button >
+            <span>Thời gian còn lại: <b>72:00</b></span>
+          </Button>
           <BoardOptions
             boardId={boardId}
             removeBoardCallback={redirectToDashboard}

@@ -14,15 +14,10 @@ export interface createBoardParams extends serviceParams {
   payload: {
     name: string;
     description: string;
+    estimatedTime: string; // Thêm trường thời gian dự kiến
   };
 }
 
-export interface createBoardParams extends serviceParams {
-  payload: {
-    name: string;
-    description: string;
-  };
-}
 
 export interface getBoardParams extends serviceParams {
   boardId: string;
@@ -38,8 +33,10 @@ export interface updateBoardParams extends serviceParams {
   payload: {
     name?: string;
     description?: string;
+    estimatedTime?: string; // Thêm trường thời gian dự kiến
   };
 }
+
 
 export interface getPinnedBoardsResponse {
   boards: BoardI[];

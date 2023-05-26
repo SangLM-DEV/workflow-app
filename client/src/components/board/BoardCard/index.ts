@@ -2,6 +2,7 @@ export { default } from "./BoardCard";
 
 export interface BoardcardProps {
   boardName: string;
+  estimatedTime:string;
   boardId: string;
   isPinned?: boolean;
   pinBoard: () => void;

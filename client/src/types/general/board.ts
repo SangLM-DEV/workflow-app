@@ -28,6 +28,8 @@ export interface BoardFullI {
   description: string;
   author: string;
   columns: ColumnI[];
+  estimatedTime: string; // Thêm trường thời gian dự kiến
+
 }
 
 export interface BoardI {
@@ -38,4 +40,5 @@ export interface BoardI {
   isAuthor: boolean;
   pinned?: boolean;
   members?: BoardUserI[];
+  estimatedTime: string; // Thêm trường thời gian dự kiến
 }
