@@ -7,7 +7,9 @@ import LoadingOverlay from "components/layout/LoadingOverlay";
 import { updateBoard, getBoard } from "service";
 import axios, { CancelTokenSource } from "axios";
 
-const BoardUpdate: React.FC<BoardEditorProps & FormikProps<FormValues>> = (props) => {
+const BoardUpdate: React.FC<BoardEditorProps & FormikProps<FormValues>> = (
+  props
+) => {
   return <BoardEditorForm {...props} submitType="Update" />;
 };
 
@@ -29,7 +31,7 @@ const BoardUpdateWithFormik = withFormik<BoardEditorProps, FormValues>({
     const { data } = response;
     if (!!data) {
       const { boardId, message } = data;
-      setStatus({ submitStatus: "SUCCESS", boardId, message });
+      setStatus({ submitStatus: "Thành công", boardId, message });
     }
   },
 })(BoardUpdate);
@@ -65,7 +67,11 @@ const BoardUpdateWrapper: React.FC<BoardEditorProps> = (props) => {
   }, [props.boardId]);
 
   return (
-    <LoadingOverlay show={loadingBoardInfo} opacity={0} className="board-editor">
+    <LoadingOverlay
+      show={loadingBoardInfo}
+      opacity={0}
+      className="board-editor"
+    >
       <BoardUpdateWithFormik {...props} initialValues={initialVals} />
     </LoadingOverlay>
   );

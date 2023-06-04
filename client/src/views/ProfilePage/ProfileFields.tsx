@@ -6,10 +6,14 @@ import * as Yup from "yup";
 import { updateCredentials } from "service";
 
 const validationSchema = Yup.object({
-  username: Yup.string().max(25, "username is too long").required("field is required"),
+  username: Yup.string()
+    .max(25, "username is too long")
+    .required("field is required"),
   email: Yup.string().email().required("field is required"),
   name: Yup.string().max(25, "name is too long").required("field is required"),
-  surname: Yup.string().max(25, "surname is too long").required("field is required"),
+  surname: Yup.string()
+    .max(25, "surname is too long")
+    .required("field is required"),
 });
 
 interface ProfileFieldsProps {
@@ -33,26 +37,46 @@ const ProfileFields: React.FC<FormikProps<FormValues>> = (props) => {
 
   return (
     <Form className="profile__inputs">
-      <Field disabled={!isEditing} name="username" error={errors["username"]} as={TextField} />
-      <Field disabled={!isEditing} name="email" error={errors["email"]} as={TextField} />
-      <Field disabled={!isEditing} name="name" error={errors["name"]} as={TextField} />
-      <Field disabled={!isEditing} name="surname" error={errors["surname"]} as={TextField} />
+      <Field
+        disabled={!isEditing}
+        name="username"
+        error={errors["username"]}
+        as={TextField}
+      />
+      <Field
+        disabled={!isEditing}
+        name="email"
+        error={errors["email"]}
+        as={TextField}
+      />
+      <Field
+        disabled={!isEditing}
+        name="name"
+        error={errors["name"]}
+        as={TextField}
+      />
+      <Field
+        disabled={!isEditing}
+        name="surname"
+        error={errors["surname"]}
+        as={TextField}
+      />
       {isEditing ? (
         <>
           <Button
             disabled={isSubmitting || !isValid}
             variant="glow"
-          
-            type="submit">
-            Update
+            type="submit"
+          >
+            Cập nhật
           </Button>
           <Button onClick={cancelFormChangesHandler} type="button">
-            Cancel
+            Thoát
           </Button>
         </>
       ) : (
         <Button onClick={editFormHandler} className="btn-edit" type="button">
-          Edit
+          Sửa
         </Button>
       )}
     </Form>

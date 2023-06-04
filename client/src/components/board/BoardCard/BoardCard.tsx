@@ -38,8 +38,8 @@ const BoardCard: React.FC<BoardcardProps> = ({
         <h1 onClick={goToBoard} className="board-card__content__title">
           {boardName}
         </h1>
-        <p>20:00</p>
         <div className="board-card__content__menu">
+          <p className="board-card__time">20:00</p>
           <span
             className="board-card__content__menu__icon"
             role="button"

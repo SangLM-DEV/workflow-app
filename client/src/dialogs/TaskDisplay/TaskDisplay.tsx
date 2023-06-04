@@ -57,7 +57,10 @@ const TaskDisplay: React.FC<TaskDisplayProps> = ({ taskId }) => {
         cancelToken: source.current?.token,
       });
       if (status === 400) {
-        alertDispatch({ type: AlertActionType.WARNING, payload: { message: "Task not found" } });
+        alertDispatch({
+          type: AlertActionType.WARNING,
+          payload: { message: "Task not found" },
+        });
         modalDispatch({ type: ModalActionType.CLOSE });
       } else if (!!data) {
         history.push({
@@ -76,7 +79,7 @@ const TaskDisplay: React.FC<TaskDisplayProps> = ({ taskId }) => {
   }, [currentBoard, taskId, history, modalDispatch, alertDispatch]);
 
   const deleteTaskHandler = async () => {
-    const shouldDelete = window.confirm("are you sure you want to delete this task?");
+    const shouldDelete = window.confirm("Bạn chắc chắn muốn xóa nhiệm vụ?");
     if (shouldDelete) {
       deleteTask({
         boardId: currentBoard?.id || "",
@@ -103,19 +106,33 @@ const TaskDisplay: React.FC<TaskDisplayProps> = ({ taskId }) => {
 
   const isAuthorizedToEdit = () => {
     const { role } = currentBoard;
-    return taskDetails.author._id === user._id || role === "OWNER" || role === "ADMIN";
+    return (
+      taskDetails.author._id === user._id ||
+      role === "OWNER" ||
+      role === "ADMIN"
+    );
   };
 
   return (
-    <LoadingOverlay className="task-display-loader" show={isTaskLoading} opacity={0}>
+    <LoadingOverlay
+      className="task-display-loader"
+      show={isTaskLoading}
+      opacity={0}
+    >
       <section className="task-display">
         <header className="task-display__header">
           {isAuthorizedToEdit() && (
             <div className="task-display__header__controls">
-              <Button className="task-display__header__controls__btn" onClick={deleteTaskHandler}>
+              <Button
+                className="task-display__header__controls__btn"
+                onClick={deleteTaskHandler}
+              >
                 <FaTrashAlt /> Delete
               </Button>
-              <Button className="task-display__header__controls__btn" onClick={openTaskEditModal}>
+              <Button
+                className="task-display__header__controls__btn"
+                onClick={openTaskEditModal}
+              >
                 <FaEdit /> Edit
               </Button>
             </div>
@@ -130,20 +147,28 @@ const TaskDisplay: React.FC<TaskDisplayProps> = ({ taskId }) => {
                 <Tag key={_id} colorCode={color} tagName={name} />
               ))}
             </div>
-            <p className="task-display__body__content__description">{taskDetails.description}</p>
+            <p className="task-display__body__content__description">
+              {taskDetails.description}
+            </p>
           </div>
           <aside className="task-display__body__people">
             <div className="task-display__body__people__author">
-              <label className="task-display__body__people__label">Task Author</label>
+              <label className="task-display__body__people__label">
+                Task Author
+              </label>
               <User
                 username={taskDetails.author.username}
                 imageSrc={taskDetails.author.avatarImageURL}
               />
             </div>
-            <label className="task-display__body__people__label">Asignees</label>
+            <label className="task-display__body__people__label">
+              Asignees
+            </label>
             <div className="task-display__body__people__asignees scrollbar">
               {taskDetails.people.length === 0 && (
-                <i className="task-display__body__people__message">No user has been assinged</i>
+                <i className="task-display__body__people__message">
+                  No user has been assinged
+                </i>
               )}
               {taskDetails.people.map(({ _id, username, avatarImageURL }) => (
                 <User key={_id} username={username} imageSrc={avatarImageURL} />

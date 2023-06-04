@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import "./BoardPage.scss";
 import "./BoardPage-dark.scss";
@@ -88,7 +94,7 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
         type: ModalActionType.OPEN,
         payload: {
           render: <TaskDisplay taskId={query.task as string} />,
-          title: "Task Details",
+          title: "Chi tiết nhiệm vụ",
           size: "l",
         },
       });
@@ -112,13 +118,16 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
   const openBoardMembersModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <BoardMembers boardId={boardId} />, title: "Board Members" },
+      payload: {
+        render: <BoardMembers boardId={boardId} />,
+        title: "Thành viên tham gia",
+      },
     });
   };
   const openBoardTagsModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <Tags boardId={boardId} />, title: "Board Tags" },
+      payload: { render: <Tags boardId={boardId} />, title: "Thẻ bảng" },
     });
   };
   const redirectToDashboard = () => {
@@ -134,11 +143,11 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
         <div className="board-page__controlls">
           <Button onClick={openBoardMembersModal}>
             <FaUsers />
-            <span>Peolpe</span>
+            <span>Mọi người</span>
           </Button>
           <Button onClick={openBoardTagsModal}>
             <FaTags />
-            <span>Tags</span>
+            <span>Thẻ</span>
           </Button>
           <BoardOptions
             boardId={boardId}
@@ -148,7 +157,10 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
         </div>
         <hr className="break-line" style={{ width: "100%" }} />
         <DragDropContext
-          onDragEnd={(result) => onDragEnd(boardId, result, tasksState, tasksDispatch)}>
+          onDragEnd={(result) =>
+            onDragEnd(boardId, result, tasksState, tasksDispatch)
+          }
+        >
           <TaskBoard boardId={boardId} />
         </DragDropContext>
       </div>

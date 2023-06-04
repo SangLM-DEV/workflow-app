@@ -13,67 +13,91 @@ const TaskBoard: React.FC<{ boardId: string }> = ({ boardId }) => {
     userState: { currentBoard },
   } = useContext(UserContext);
 
-  const createNewColumn = useCallback((newColumn: string) => {
-    tasksDispatch({
-      type: TasksActionType.CREATE_COLUMN,
-      payload: {
-        newColumn,
-      },
-    });
-  }, [tasksDispatch]);
-  const deleteSocketColumn = useCallback((deleteResponse: any) => {
-    tasksDispatch({
-      type: TasksActionType.DELETE_COLUMN,
-      payload: {
-        columnIndex: deleteResponse.index,
-      },
-    });
-  }, [tasksDispatch]);
-  const moveSocketColumn = useCallback((moveResponse: any) => {
-    tasksDispatch({
-      type: TasksActionType.MOVE_COLUMN,
-      payload: {
-        destinationIndex: moveResponse.destination,
-        sourceIndex: moveResponse.source,
-      },
-    });
-  }, [tasksDispatch]);
-  const createTask = useCallback((data: any) => {
-    const { error, task, columnIndex } = data;
-    if (!error) {
+  const createNewColumn = useCallback(
+    (newColumn: string) => {
       tasksDispatch({
-        type: TasksActionType.CREATE_TASK,
+        type: TasksActionType.CREATE_COLUMN,
         payload: {
-          columnIndex,
-          task,
+          newColumn,
         },
       });
-    }
-  }, [tasksDispatch]);
-  const deleteTask = useCallback((data: any) => {
-    const { error, columnIndex, taskIndex } = data;
-    if (!error) {
+    },
+    [tasksDispatch]
+  );
+  const deleteSocketColumn = useCallback(
+    (deleteResponse: any) => {
       tasksDispatch({
-        type: TasksActionType.DELETE_TASK,
+        type: TasksActionType.DELETE_COLUMN,
         payload: {
-          columnIndex,
-          taskIndex,
+          columnIndex: deleteResponse.index,
         },
       });
-    }
-  }, [tasksDispatch]);
-  const moveTask = useCallback((data: any) => {
-    const { error, source, destination } = data;
-    if (!error) {
+    },
+    [tasksDispatch]
+  );
+  const moveSocketColumn = useCallback(
+    (moveResponse: any) => {
       tasksDispatch({
-        type: TasksActionType.MOVE_TASK,
+        type: TasksActionType.MOVE_COLUMN,
         payload: {
-          column: { sourceIndex: source.columnIndex, destinationIndex: destination.columnIndex },
-          task: { sourceIndex: source.taskIndex, destinationIndex: destination.taskIndex },
+          destinationIndex: moveResponse.destination,
+          sourceIndex: moveResponse.source,
         },
       });
-    }
-  }, [tasksDispatch]);
+    },
+    [tasksDispatch]
+  );
+  const createTask = useCallback(
+    (data: any) => {
+      const { error, task, columnIndex } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.CREATE_TASK,
+          payload: {
+            columnIndex,
+            task,
+          },
+        });
+      }
+    },
+    [tasksDispatch]
+  );
+  const deleteTask = useCallback(
+    (data: any) => {
+      const { error, columnIndex, taskIndex } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.DELETE_TASK,
+          payload: {
+            columnIndex,
+            taskIndex,
+          },
+        });
+      }
+    },
+    [tasksDispatch]
+  );
+  const moveTask = useCallback(
+    (data: any) => {
+      const { error, source, destination } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.MOVE_TASK,
+          payload: {
+            column: {
+              sourceIndex: source.columnIndex,
+              destinationIndex: destination.columnIndex,
+            },
+            task: {
+              sourceIndex: source.taskIndex,
+              destinationIndex: destination.taskIndex,
+            },
+          },
+        });
+      }
+    },
+    [tasksDispatch]
+  );
 
   useWebSocketListener("createNewColumn", createNewColumn);
   useWebSocketListener("deleteColumn", deleteSocketColumn);
@@ -82,7 +106,6 @@ const TaskBoard: React.FC<{ boardId: string }> = ({ boardId }) => {
   useWebSocketListener("deleteTask", deleteTask);
   useWebSocketListener("moveTask", moveTask);
 
-
   const isAuthorized = () => {
     const { role } = currentBoard;
     return role === UserBoardRoles.OWNER || role === UserBoardRoles.ADMIN;
@@ -90,7 +113,11 @@ const TaskBoard: React.FC<{ boardId: string }> = ({ boardId }) => {
 
   return (
     <div className="task-board scrollbar">
-      <Droppable droppableId="droppable" type="droppableColumn" direction="horizontal">
+      <Droppable
+        droppableId="droppable"
+        type="droppableColumn"
+        direction="horizontal"
+      >
         {(provided) => {
           return (
             <div className="task-board__task-row" ref={provided.innerRef}>

@@ -4,12 +4,24 @@ import { TextField } from "components/general/TextInput";
 import Button from "components/general/Button";
 import { FaBackward } from "react-icons/fa";
 
-import { RegisterStepProps, RegisterTwoFormValues, validationSchemaStepTwo } from ".";
+import {
+  RegisterStepProps,
+  RegisterTwoFormValues,
+  validationSchemaStepTwo,
+} from ".";
 
-const RegisterStage2: React.FC<RegisterStepProps & FormikProps<RegisterTwoFormValues>> = (
-  props
-) => {
-  const { values, errors, isSubmitting, isValid, changeStep, serverErrors, setErrors } = props;
+const RegisterStage2: React.FC<
+  RegisterStepProps & FormikProps<RegisterTwoFormValues>
+> = (props) => {
+  const {
+    values,
+    errors,
+    isSubmitting,
+    isValid,
+    changeStep,
+    serverErrors,
+    setErrors,
+  } = props;
 
   useEffect(() => {
     if (serverErrors) setErrors(serverErrors);
@@ -25,13 +37,24 @@ const RegisterStage2: React.FC<RegisterStepProps & FormikProps<RegisterTwoFormVa
       <Button
         type="button"
         className="register-stage-controll-btn stage-back"
-        onClick={handleGoBackStage}>
+        onClick={handleGoBackStage}
+      >
         <FaBackward />
         Go back
       </Button>
-      <Field autoFocus={true} name="email" error={errors["email"]} as={TextField} />
+      <Field
+        autoFocus={true}
+        name="email"
+        error={errors["email"]}
+        as={TextField}
+      />
       <Field name="username" error={errors["username"]} as={TextField} />
-      <Field name="password" error={errors["password"]} type="password" as={TextField} />
+      <Field
+        name="password"
+        error={errors["password"]}
+        type="password"
+        as={TextField}
+      />
       <Field
         label="match password"
         name="matchPassword"
@@ -43,14 +66,18 @@ const RegisterStage2: React.FC<RegisterStepProps & FormikProps<RegisterTwoFormVa
         disabled={isSubmitting || !isValid}
         variant="glow"
         className="btn-submit"
-        type="submit">
-        Register
+        type="submit"
+      >
+        Đăng Ký
       </Button>
     </Form>
   );
 };
 
-const RegisterStage2WithFormik = withFormik<RegisterStepProps, RegisterTwoFormValues>({
+const RegisterStage2WithFormik = withFormik<
+  RegisterStepProps,
+  RegisterTwoFormValues
+>({
   mapPropsToValues: (props) => {
     const { data } = props;
     return { ...data };

@@ -45,7 +45,10 @@ const Register = () => {
         });
         modalDispatch({ type: ModalActionType.CLOSE });
       } else if (!!error) {
-        alertDispatch({ type: AlertActionType.ERROR, payload: { message: "validation error" } });
+        alertDispatch({
+          type: AlertActionType.ERROR,
+          payload: { message: "Lỗi xác nhận" },
+        });
         setFieldErrors(error.message);
       }
       return;

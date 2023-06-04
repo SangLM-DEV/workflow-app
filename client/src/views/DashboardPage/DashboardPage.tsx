@@ -78,7 +78,7 @@ const DashboardPage: React.FC = () => {
       type: ModalActionType.OPEN,
       payload: {
         render: <BoardCreate />,
-        title: "Create new Board",
+        title: "Tạo bảng công việc mới",
       },
     });
   };

@@ -25,19 +25,28 @@ const ChangeProfilePicture: React.FC<FormikProps<FormValues>> = (props) => {
 
   return (
     <Form className="change-profile-picture">
-      <Field name="imageLink" label="avatar image URL" error={errors["imageLink"]} as={TextField} />
+      <Field
+        name="imageLink"
+        label="avatar image URL"
+        error={errors["imageLink"]}
+        as={TextField}
+      />
       <Button
         disabled={isSubmitting || !isValid}
         variant="glow"
         className="change-profile-picture__update-btn"
-        type="submit">
-        Update
+        type="submit"
+      >
+        Cập nhật
       </Button>
     </Form>
   );
 };
 
-const ChangeProfilePictureWithFormik = withFormik<ChangeProfilePictureProps, FormValues>({
+const ChangeProfilePictureWithFormik = withFormik<
+  ChangeProfilePictureProps,
+  FormValues
+>({
   mapPropsToValues: () => {
     return { imageLink: "", password: "" };
   },

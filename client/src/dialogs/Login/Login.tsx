@@ -10,8 +10,12 @@ import * as Yup from "yup";
 import "./Login.scss";
 
 export const validationSchema = Yup.object({
-  username: Yup.string().max(25, "username is too long").required("field is required"),
-  password: Yup.string().min(5, "must be at least 5 characters").required("field is required"),
+  username: Yup.string()
+    .max(25, "username is too long")
+    .required("field is required"),
+  password: Yup.string()
+    .min(5, "must be at least 5 characters")
+    .required("field is required"),
 });
 
 const LoginForm: React.FC<FormikProps<FormValues>> = (props) => {
@@ -34,14 +38,25 @@ const LoginForm: React.FC<FormikProps<FormValues>> = (props) => {
 
   return (
     <Form className="login-form">
-      <Field autoFocus={true} name="username" error={errors["username"]} as={TextField} />
-      <Field name="password" error={errors["password"]} type="password" as={TextField} />
+      <Field
+        autoFocus={true}
+        name="username"
+        error={errors["username"]}
+        as={TextField}
+      />
+      <Field
+        name="password"
+        error={errors["password"]}
+        type="password"
+        as={TextField}
+      />
       <Button
         disabled={isSubmitting || !isValid}
         variant="glow"
         className="login-form__btn"
-        type="submit">
-        Log In
+        type="submit"
+      >
+        Đăng Nhập
       </Button>
     </Form>
   );
@@ -53,7 +68,10 @@ const LoginWithFormik = withFormik<{}, FormValues>({
   },
   validationSchema: validationSchema,
   handleSubmit: async (submittedData, { setSubmitting, setStatus }) => {
-    const { data, error } = await login({ setLoading: setSubmitting, payload: submittedData });
+    const { data, error } = await login({
+      setLoading: setSubmitting,
+      payload: submittedData,
+    });
     if (!!data) {
       const { token, user } = data;
       setStatus({ submitStatus: "SUCCESS", token, user });

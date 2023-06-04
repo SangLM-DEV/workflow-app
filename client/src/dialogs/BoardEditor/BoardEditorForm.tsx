@@ -8,7 +8,9 @@ import { ModalContext, ModalActionType } from "context/ModalContext";
 import { useHistory } from "react-router-dom";
 import "./BoardEditor.scss";
 
-const BoardEditorForm: React.FC<BoardEditorFormProps & FormikProps<FormValues>> = (props) => {
+const BoardEditorForm: React.FC<
+  BoardEditorFormProps & FormikProps<FormValues>
+> = (props) => {
   const { errors, isSubmitting, isValid, submitType, status } = props;
   const { modalDispatch } = useContext(ModalContext);
   const { alertDispatch } = useContext(AlertContext);
@@ -17,7 +19,10 @@ const BoardEditorForm: React.FC<BoardEditorFormProps & FormikProps<FormValues>> 
   useEffect(() => {
     if (status?.submitStatus === "SUCCESS") {
       modalDispatch({ type: ModalActionType.CLOSE });
-      alertDispatch({ type: AlertActionType.SUCCESS, payload: { message: status.message } });
+      alertDispatch({
+        type: AlertActionType.SUCCESS,
+        payload: { message: status.message },
+      });
       history.push(`/board/${status.boardId}`);
     }
     return () => {};
@@ -44,7 +49,8 @@ const BoardEditorForm: React.FC<BoardEditorFormProps & FormikProps<FormValues>> 
         className="board-editor__btn"
         disabled={isSubmitting || !isValid}
         variant="glow"
-        type="submit">
+        type="submit"
+      >
         {submitType as String}
       </Button>
     </Form>

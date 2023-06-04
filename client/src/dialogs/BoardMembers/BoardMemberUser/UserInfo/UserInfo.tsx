@@ -1,4 +1,10 @@
-import React, { forwardRef, useRef, useEffect, useState, useCallback } from "react";
+import React, {
+  forwardRef,
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { matchPath, useLocation } from "react-router-dom";
 import { UserInfoProps } from ".";
 import "./UserInfo.scss";
@@ -8,7 +14,13 @@ import Image from "components/general/Image";
 import Button from "components/general/Button";
 import DropdownMenu from "components/general/DropdownMenu";
 import DropdownMenuItem from "components/general/DropdownMenu/DropdownMenuItem";
-import { FaShieldAlt, FaUserAlt, FaRegAddressCard, FaCrown, FaUserSlash } from "react-icons/fa";
+import {
+  FaShieldAlt,
+  FaUserAlt,
+  FaRegAddressCard,
+  FaCrown,
+  FaUserSlash,
+} from "react-icons/fa";
 import axios, { CancelTokenSource } from "axios";
 
 const UserInfo = forwardRef<HTMLDivElement, UserInfoProps>(
@@ -34,7 +46,6 @@ const UserInfo = forwardRef<HTMLDivElement, UserInfoProps>(
     const source = useRef<CancelTokenSource | null>(null);
 
     const getBoardUserInfo = useCallback(async () => {
-
       const { data } = await getBoardMember({
         boardId,
         userId,
@@ -91,7 +102,11 @@ const UserInfo = forwardRef<HTMLDivElement, UserInfoProps>(
     };
 
     const availableRoles = () => {
-      const ownerRoles = [UserBoardRoles.ADMIN, UserBoardRoles.REGULAR, UserBoardRoles.GUEST];
+      const ownerRoles = [
+        UserBoardRoles.ADMIN,
+        UserBoardRoles.REGULAR,
+        UserBoardRoles.GUEST,
+      ];
       const adminRoles = [UserBoardRoles.REGULAR, UserBoardRoles.GUEST];
       let roles: UserBoardRoles[] = [];
 
@@ -99,18 +114,26 @@ const UserInfo = forwardRef<HTMLDivElement, UserInfoProps>(
       else if (currentRole === UserBoardRoles.ADMIN) roles = adminRoles;
 
       return roles.map((role) => (
-        <DropdownMenuItem onClick={() => changeUserRole(userId, role)} key={role}>
+        <DropdownMenuItem
+          onClick={() => changeUserRole(userId, role)}
+          key={role}
+        >
           {roleIcon(role)}
         </DropdownMenuItem>
       ));
     };
 
     const isAuthorizedAdmin = () => {
-      return currentRole === UserBoardRoles.OWNER || currentRole === UserBoardRoles.ADMIN;
+      return (
+        currentRole === UserBoardRoles.OWNER ||
+        currentRole === UserBoardRoles.ADMIN
+      );
     };
 
     const kickUserHandler = () => {
-      const shouldKickUser = window.confirm(`are you sure you want to kick ${user.user.username}?`);
+      const shouldKickUser = window.confirm(
+        `Bạn chắc chắn muốn xóa ${user.user.username}?`
+      );
       if (shouldKickUser) {
         removeUser(userId);
       }
@@ -132,15 +155,25 @@ const UserInfo = forwardRef<HTMLDivElement, UserInfoProps>(
           </p>
         </div>
         <div className="user-info__control-btn">
-          <Button disabled={user.role === UserBoardRoles.OWNER || isLoading} ref={rolesAnchor}>
+          <Button
+            disabled={user.role === UserBoardRoles.OWNER || isLoading}
+            ref={rolesAnchor}
+          >
             {roleIcon(user.role)}
           </Button>
-          <DropdownMenu offset={{ x: -125, y: 0 }} anchorEl={rolesAnchor} className="role-options">
+          <DropdownMenu
+            offset={{ x: -125, y: 0 }}
+            anchorEl={rolesAnchor}
+            className="role-options"
+          >
             {availableRoles()}
           </DropdownMenu>
-          <Button disabled={isLoading || !isAuthorizedAdmin()} onClick={kickUserHandler}>
+          <Button
+            disabled={isLoading || !isAuthorizedAdmin()}
+            onClick={kickUserHandler}
+          >
             <FaUserSlash />
-            kick
+            Xóa bỏ
           </Button>
         </div>
       </div>

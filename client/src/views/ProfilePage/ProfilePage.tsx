@@ -9,11 +9,14 @@ import ChangePassword from "dialogs/ChangePassword";
 import ChangeProfilePicture from "dialogs/ChangeProfilePicture/ChangeProfilePicture";
 import LoadingOverlay from "components/layout/LoadingOverlay/LoadingOverlay";
 import ProfileFields from "./ProfileFields";
-import { FaRegImage  } from "react-icons/fa";
+import { FaRegImage } from "react-icons/fa";
 
 const ProfilePage: React.FC = () => {
   const { modalDispatch } = useContext(ModalContext);
-  const {userState: { user }, userDispatch} = useContext(UserContext);
+  const {
+    userState: { user },
+    userDispatch,
+  } = useContext(UserContext);
 
   const [isProfileLoaded, setProfileLoading] = useState(true);
 
@@ -25,14 +28,17 @@ const ProfilePage: React.FC = () => {
   }, [user]);
 
   const setProfilePicture = (newImage: string) => {
-    userDispatch({ type: UserActionType.UPDATE_AVATAR, payload: { avatar: newImage } });
-  }
+    userDispatch({
+      type: UserActionType.UPDATE_AVATAR,
+      payload: { avatar: newImage },
+    });
+  };
   const changeImageModalOpen = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
       payload: {
         render: <ChangeProfilePicture changeProfilePic={setProfilePicture} />,
-        title: "Change profile picture",
+        title: "Đổi ảnh đại diện",
       },
     });
   };
@@ -41,18 +47,25 @@ const ProfilePage: React.FC = () => {
       type: ModalActionType.OPEN,
       payload: {
         render: <ChangePassword />,
-        title: "Change password",
+        title: "Đổi mật khẩu",
       },
     });
   };
 
   return (
     <ContainerBox>
-      <LoadingOverlay className="profile-page-loading-overlay" show={isProfileLoaded} opacity={0}>
+      <LoadingOverlay
+        className="profile-page-loading-overlay"
+        show={isProfileLoaded}
+        opacity={0}
+      >
         <div className="profile">
           <div className="profile__image">
             <Image src={user.avatarImageURL} />
-            <button onClick={changeImageModalOpen} className="profile__image__btn">
+            <button
+              onClick={changeImageModalOpen}
+              className="profile__image__btn"
+            >
               <FaRegImage className="profile__image__btn-icon" />
             </button>
           </div>
@@ -62,8 +75,11 @@ const ProfilePage: React.FC = () => {
             username={user.username}
             email={user.email}
           />
-          <Button onClick={changePasswordModalOpen} className="profile__password-btn">
-            change password
+          <Button
+            onClick={changePasswordModalOpen}
+            className="profile__password-btn"
+          >
+            Đổi mật khẩu
           </Button>
         </div>
       </LoadingOverlay>

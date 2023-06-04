@@ -4,7 +4,9 @@ import { withFormik, FormikProps } from "formik";
 import { validationSchema, BoardEditorProps, FormValues } from ".";
 import { createBoard } from "service";
 
-const BoardCreate: React.FC<BoardEditorProps & FormikProps<FormValues>> = (props) => {
+const BoardCreate: React.FC<BoardEditorProps & FormikProps<FormValues>> = (
+  props
+) => {
   return <BoardEditorForm {...props} submitType="Create" />;
 };
 
@@ -20,7 +22,11 @@ const BoardCreateWrapper = withFormik<BoardEditorProps, FormValues>({
     });
     const { data } = response;
     if (!!data) {
-      setStatus({ submitStatus: "SUCCESS", boardId: data.board._id, message: data.message });
+      setStatus({
+        submitStatus: "Thành công",
+        boardId: data.board._id,
+        message: data.message,
+      });
     }
   },
 })(BoardCreate);
