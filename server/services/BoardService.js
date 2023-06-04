@@ -2,13 +2,21 @@ const paginateContent = require("../helper/pagination");
 
 module.exports = function ({ BoardRepository, TaskRepository, TagRepository }) {
   async function createBoard(boardData, authorId) {
-    const { name, description } = boardData;
+    const { name, description, estimatedTime } = boardData;
     const members = [{ user: authorId, role: "OWNER" }];
-    return await BoardRepository.create({ name, description, members, author: authorId });
+    return await BoardRepository.create({ name, description, members, author: authorId, estimatedTime });
   }
 
   async function updateBoard(boardData, boardId) {
-    return await BoardRepository.update(boardId, boardData);
+    const { name, description, estimatedTime, completedTime } = boardData;
+    const updatedData = { name, description };
+    if (estimatedTime) {
+      updatedData.estimatedTime = new Date(estimatedTime);
+    }
+    if (completedTime) {
+      updatedData.completedTime = new Date(completedTime);
+    }
+    return await BoardRepository.update(boardId, updatedData);
   }
 
   async function getUserBoards(userId, { page, limit }) {
@@ -21,10 +29,12 @@ module.exports = function ({ BoardRepository, TaskRepository, TagRepository }) {
         userPinnedBoards.findIndex(({ _id }) => {
           return _id.toLocaleString() === board._id.toLocaleString();
         }) > -1;
+      console.log("board.estimatedTime", userBoards);
       return {
         ...board.toObject(),
         pinned,
         isAuthor,
+        estimatedTime: board.estimatedTime,
       };
     });
     if (page && limit) {
@@ -47,9 +57,10 @@ module.exports = function ({ BoardRepository, TaskRepository, TagRepository }) {
   async function getBoard(boardId, short = false) {
     const board = await BoardRepository.get(boardId);
     if (short) {
-      const { _id, name, description, author } = board;
-      return { _id, name, description, author };
+      const { _id, name, description, author, estimatedTime } = board;
+      return { _id, name, description, author, estimatedTime };
     }
+    console.log("short", short);
     return board;
   }
 

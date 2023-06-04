@@ -68,46 +68,46 @@ module.exports = (io, socket) => {
       } catch (error) {
         call({ error: error });
       }
-      // try {
-      //   const { columnId, boardId, title, description, tags, people, authorId } = data;
-      //   // const newTask = await taskService.createTask(boardId);
+      try {
+        const { columnId, boardId, title, description, tags, people, authorId } = data;
+        // const newTask = await taskService.createTask(boardId);
 
-      //   const foundBoard = await Board.findOne({ _id: boardId }, "_id name columns");
-      //   const newTask = new Task({
-      //     title,
-      //     description,
-      //     tags,
-      //     people,
-      //     author: authorId,
-      //     board: boardId,
-      //   });
-      //   const savedTask = await newTask.save();
-      //   const columnIndex = foundBoard.columns.findIndex(({ _id }) => {
-      //     return _id.toLocaleString() === columnId.toLocaleString();
-      //   });
-      //   foundBoard.columns[columnIndex].tasks.push(savedTask._id);
-      //   const task = await savedTask
-      //     .populate("people tags author", "username avatarImageURL name color")
-      //     .execPopulate();
-      //   await foundBoard.save();
+        const foundBoard = await Board.findOne({ _id: boardId }, "_id name columns");
+        const newTask = new Task({
+          title,
+          description,
+          tags,
+          people,
+          author: authorId,
+          board: boardId,
+        });
+        const savedTask = await newTask.save();
+        const columnIndex = foundBoard.columns.findIndex(({ _id }) => {
+          return _id.toLocaleString() === columnId.toLocaleString();
+        });
+        foundBoard.columns[columnIndex].tasks.push(savedTask._id);
+        const task = await savedTask
+          .populate("people tags author", "username avatarImageURL name color")
+          .execPopulate();
+        await foundBoard.save();
 
-      //   const newNotification = {
-      //     title: foundBoard.name,
-      //     info: `assigned new task: ${title}`,
-      //     url: `/board/${foundBoard._id}?task=${task._id}`,
-      //   };
-      //   await User.updateMany(
-      //     { _id: { $in: people } },
-      //     { $push: { notifications: newNotification } }
-      //   );
-      //   return {
-      //     success: true,
-      //     message: "created task",
-      //     task: { columnIndex, ...task.toObject() },
-      //   };
-      // } catch (error) {
-      //   next(error);
-      // }
+        const newNotification = {
+          title: foundBoard.name,
+          info: `assigned new task: ${title}`,
+          url: `/board/${foundBoard._id}?task=${task._id}`,
+        };
+        await User.updateMany(
+          { _id: { $in: people } },
+          { $push: { notifications: newNotification } }
+        );
+        return {
+          success: true,
+          message: "created task",
+          task: { columnIndex, ...task.toObject() },
+        };
+      } catch (error) {
+        next(error);
+      }
     },
   };
 };

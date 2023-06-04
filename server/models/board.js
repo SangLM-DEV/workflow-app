@@ -53,6 +53,12 @@ const boardSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  estimatedTime: {
+    type: Date,
+  },
+  completedTime: {
+    type: Date,
+  },
 });
 
 module.exports = makeModel("Board", boardSchema);

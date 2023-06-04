@@ -11,10 +11,15 @@ module.exports = {
   createBoard: async (req, res, next) => {
     try {
       const { id: authorId } = req.user;
-      const newBoard = await boardService.createBoard(req.body, authorId);
+      const boardData = {
+        ...req.body,
+        estimatedTime: req.body.estimatedTime, // Thêm trường thời gian dự kiến
+        completedTime: null, // Thiết lập giá trị ban đầu cho trường thời gian hoàn thành
+      };
+      const newBoard = await boardService.createBoard(boardData, authorId);
 
       return res.json({
-        message: "new board successfuly created",
+        message: "new board successfully created",
         board: newBoard,
       });
     } catch (error) {
@@ -24,10 +29,14 @@ module.exports = {
   updateBoard: async (req, res, next) => {
     try {
       const { boardId } = req.params;
-      await boardService.updateBoard(req.body, boardId);
+      const boardData = {
+        ...req.body,
+        estimatedTime: req.body.estimatedTime, // Cập nhật trường thời gian dự kiến
+      };
+      await boardService.updateBoard(boardData, boardId);
       return res.json({
         boardId,
-        message: "board successfuly updated",
+        message: "board successfully updated",
       });
     } catch (error) {
       next(error);

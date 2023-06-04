@@ -2,12 +2,17 @@ const Board = require("../models/board");
 const User = require("../models/user");
 
 module.exports = {
-  create: async ({ name, description, members, author }) => {
-    const newBoard = new Board({ name, description, members, author });
+  create: async ({ name, description, members, author, estimatedTime }) => {
+    const newBoard = new Board({ name, description, members, author, estimatedTime });
     return await newBoard.save();
   },
-  update: async (boardId, { name, description }) => {
-    return await Board.findOneAndUpdate({ _id: boardId }, { name, description });
+  update: async (boardId, { name, description, completedTime }) => {
+    const updatedBoard = await Board.findOneAndUpdate({ _id: boardId }, { name, description });
+    if (completedTime) {
+      updatedBoard.completedTime = new Date(completedTime);
+      await updatedBoard.save();
+    }
+    return updatedBoard;
   },
   get: async (boardId, fields) => {
     fields = fields || "_id name description author columns";
@@ -34,7 +39,7 @@ module.exports = {
   userBoards: async (userId) => {
     return await Board.find(
       { "members.user": userId },
-      "description name _id author"
+      "description name _id author estimatedTime"
     ).sort({ timeCreated: -1 });
   },
   userPinnedBoards: async (userId) => {

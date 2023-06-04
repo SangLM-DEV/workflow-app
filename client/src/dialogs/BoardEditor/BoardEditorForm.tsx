@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { FormikProps, Form, Field } from "formik";
 import { BoardEditorFormProps, FormValues } from ".";
 import { TextField, TextAreaField } from "components/general/TextInput";
+import DatePicker from "react-datepicker";
+
 import Button from "components/general/Button";
 import { AlertContext, AlertActionType } from "context/AlertContext";
 import { ModalContext, ModalActionType } from "context/ModalContext";
@@ -45,6 +47,14 @@ const BoardEditorForm: React.FC<
         disabled={isSubmitting}
         as={TextAreaField}
       />
+      {/* <Field
+        name="estimatedTime"
+        className="board-editor__field__name"
+        error={errors["estimatedTime"]}
+        disabled={isSubmitting}
+        as={TextField}
+      /> */}
+
       <Button
         className="board-editor__btn"
         disabled={isSubmitting || !isValid}

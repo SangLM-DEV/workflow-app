@@ -18,6 +18,7 @@ const BoardUpdateWithFormik = withFormik<BoardEditorProps, FormValues>({
     return {
       name: props.initialValues?.name || "",
       description: props.initialValues?.description || "",
+      estimatedTime: props.initialValues?.estimatedTime || "",
     };
   },
   validationSchema: validationSchema,
@@ -41,6 +42,7 @@ const BoardUpdateWrapper: React.FC<BoardEditorProps> = (props) => {
   const [initialVals, setInitialVals] = useState<FormValues>({
     name: "",
     description: "",
+    estimatedTime: ""
   });
   const source = useRef<CancelTokenSource | null>(null);
 
@@ -55,8 +57,8 @@ const BoardUpdateWrapper: React.FC<BoardEditorProps> = (props) => {
         cancelToken: source.current?.token,
       });
       if (!!data) {
-        const { name, description } = data;
-        setInitialVals({ name, description });
+        const { name, description, estimatedTime  } = data;
+        setInitialVals({ name, description, estimatedTime});
         setLoadingBoardInfo(false);
       }
     };

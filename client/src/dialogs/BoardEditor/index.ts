@@ -13,6 +13,8 @@ export interface BoardEditorProps {
   initialValues?: {
     name: string;
     description: string;
+    estimatedTime: string; // Thêm trường estimatedTime với kiểu dữ liệu là number
+
   };
 }
 
@@ -24,6 +26,8 @@ export interface BoardEditorFormProps {
 export interface FormValues {
   name: string;
   description: string;
+  estimatedTime: string; // Thêm trường estimatedTime với kiểu dữ liệu là number
+
 }
 
 export default BoardEditorForm;

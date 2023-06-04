@@ -14,10 +14,12 @@ const BoardContainer: React.FC<BoardContainerProps> = ({
   changePage = () => undefined,
   noBoardsMessage = "empty",
 }) => {
+  console.log("boards---", boards);
+  
   return (
     <div className={`board-container ${className || ""}`}>
       <section className="board-container__boards">
-        {boards.map(({ _id, pinned, name, isAuthor }) => (
+        {boards.map(({ _id, pinned, name, isAuthor, estimatedTime }) => (
           <BoardCard
             key={_id}
             boardId={_id}
@@ -26,6 +28,7 @@ const BoardContainer: React.FC<BoardContainerProps> = ({
             removeBoard={removeBoard}
             boardName={name}
             isAuthor={isAuthor}
+            estimatedTime={estimatedTime}
           />
         ))}
       </section>

@@ -9,6 +9,7 @@ import { BoardcardProps } from "./";
 
 const BoardCard: React.FC<BoardcardProps> = ({
   boardName,
+  estimatedTime,
   boardId,
   pinBoard,
   removeBoard,
@@ -26,6 +27,16 @@ const BoardCard: React.FC<BoardcardProps> = ({
     history.push(`/board/${boardId}`);
   };
 
+  // Tạo một đối tượng Date từ chuỗi thời gian "1970-01-01T00:00:00.000Z"
+  const date = new Date(estimatedTime);
+
+  // Lấy giá trị giờ, phút và giây từ đối tượng Date
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  // Tạo chuỗi định dạng thời gian "HH:MM:SS"
+  const formattedTime = `${hours}:${minutes}`;
+
   return (
     <div data-testid={boardId} aria-label="Board card" className="board-card">
       <div role="presentation" className="board-card__columns">
@@ -38,6 +49,7 @@ const BoardCard: React.FC<BoardcardProps> = ({
         <h1 onClick={goToBoard} className="board-card__content__title">
           {boardName}
         </h1>
+        <p>{formattedTime}</p>
         <div className="board-card__content__menu">
           <p className="board-card__time">20:00</p>
           <span
