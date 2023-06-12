@@ -11,7 +11,7 @@ const sendMail = (email, res, emailData, user) => {
 
   const msg = {
     to: email,
-    from: 'sanglm2207@gmail.com',
+    from: 'kaimedia.creator@gmail.com',
     subject: 'You are invited to join to a WorkFlow board',
     html: `<div>
       <div style="height:100px; background-color:#26292c; color: white">
