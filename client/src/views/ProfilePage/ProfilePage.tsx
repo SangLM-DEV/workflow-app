@@ -1,19 +1,22 @@
-import React, { useState, useContext, useEffect } from "react";
-import "./ProfilePage.scss";
-import Image from "components/general/Image";
-import Button from "components/general/Button";
-import ContainerBox from "components/layout/ContainerBox/ContainerBox";
-import { ModalContext, ModalActionType } from "context/ModalContext";
-import { UserContext, UserActionType } from "context/UserContext";
-import ChangePassword from "dialogs/ChangePassword";
-import ChangeProfilePicture from "dialogs/ChangeProfilePicture/ChangeProfilePicture";
-import LoadingOverlay from "components/layout/LoadingOverlay/LoadingOverlay";
-import ProfileFields from "./ProfileFields";
-import { FaRegImage  } from "react-icons/fa";
+import React, { useState, useContext, useEffect } from 'react';
+import './ProfilePage.scss';
+import Image from 'components/general/Image';
+import Button from 'components/general/Button';
+import ContainerBox from 'components/layout/ContainerBox/ContainerBox';
+import { ModalContext, ModalActionType } from 'context/ModalContext';
+import { UserContext, UserActionType } from 'context/UserContext';
+import ChangePassword from 'dialogs/ChangePassword';
+import ChangeProfilePicture from 'dialogs/ChangeProfilePicture/ChangeProfilePicture';
+import LoadingOverlay from 'components/layout/LoadingOverlay/LoadingOverlay';
+import ProfileFields from './ProfileFields';
+import { FaRegImage } from 'react-icons/fa';
 
 const ProfilePage: React.FC = () => {
   const { modalDispatch } = useContext(ModalContext);
-  const {userState: { user }, userDispatch} = useContext(UserContext);
+  const {
+    userState: { user },
+    userDispatch
+  } = useContext(UserContext);
 
   const [isProfileLoaded, setProfileLoading] = useState(true);
 
@@ -26,23 +29,25 @@ const ProfilePage: React.FC = () => {
 
   const setProfilePicture = (newImage: string) => {
     userDispatch({ type: UserActionType.UPDATE_AVATAR, payload: { avatar: newImage } });
-  }
+  };
   const changeImageModalOpen = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
       payload: {
         render: <ChangeProfilePicture changeProfilePic={setProfilePicture} />,
-        title: "Change profile picture",
-      },
+        title: 'Đổi ảnh đại diện'
+      }
     });
   };
+
+  //hàm đổi mật khẩu
   const changePasswordModalOpen = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
       payload: {
         render: <ChangePassword />,
-        title: "Change password",
-      },
+        title: 'Đổi mật khẩu'
+      }
     });
   };
 
@@ -63,7 +68,7 @@ const ProfilePage: React.FC = () => {
             email={user.email}
           />
           <Button onClick={changePasswordModalOpen} className="profile__password-btn">
-            change password
+            Đổi mật khẩu
           </Button>
         </div>
       </LoadingOverlay>

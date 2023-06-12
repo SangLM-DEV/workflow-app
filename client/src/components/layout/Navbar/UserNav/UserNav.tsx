@@ -1,24 +1,25 @@
-import React, { useContext, useState, useEffect } from "react";
-import NavItem from "components/layout/Navbar/NavItem";
-import ThemeSwitch from "components/general/ThemeSwitch";
-import Notification from "components/general/Notification";
-import { useHistory, Link } from "react-router-dom";
-import { UserContext, UserActionType } from "context/UserContext";
-import { getNotifications, removeNotification } from "service";
-import { FaSignOutAlt, FaUserAlt, FaHome, FaBell } from "react-icons/fa";
-import DropdownMenuItem from "components/general/DropdownMenu/DropdownMenuItem";
-import "./UserNav.scss";
-import { NotificationI } from "types/general";
+import React, { useContext, useState, useEffect } from 'react';
+import NavItem from 'components/layout/Navbar/NavItem';
+import ThemeSwitch from 'components/general/ThemeSwitch';
+import Notification from 'components/general/Notification';
+import { useHistory, Link } from 'react-router-dom';
+import { UserContext, UserActionType } from 'context/UserContext';
+import { getNotifications, removeNotification } from 'service';
+import { FaSignOutAlt, FaUserAlt, FaHome, FaBell } from 'react-icons/fa';
+import DropdownMenuItem from 'components/general/DropdownMenu/DropdownMenuItem';
+import './UserNav.scss';
+import { NotificationI } from 'types/general';
 
 const UserNav: React.FC = () => {
   const history = useHistory();
 
   const {
     userState: { user },
-    userDispatch,
+    userDispatch
   } = useContext(UserContext);
   const [notifications, setNotification] = useState<NotificationI[]>([]);
 
+  //hàm xử lý nhận thông báo
   const handlGetMyNotifications = async () => {
     const { data } = await getNotifications();
     if (!!data) setNotification(data.notifications);
@@ -29,13 +30,17 @@ const UserNav: React.FC = () => {
     return () => {};
   }, []);
 
+  //hàm trở về trang chủ
   const goToHomePage = () => {
-    history.push("/");
+    history.push('/');
   };
 
+  //Hàm đăng xuất
   const logOutUser = () => {
     userDispatch({ type: UserActionType.LOGOUT });
   };
+
+  //hàm xóa tin nhắn
   const removeMessage = async (index: number) => {
     const { status } = await removeNotification({ notificationId: notifications[index]._id });
     if (status)
@@ -58,12 +63,12 @@ const UserNav: React.FC = () => {
         className="profile-nav">
         <DropdownMenuItem>
           <Link to="/profile">
-            <FaUserAlt /> Profile
+            <FaUserAlt /> Tài khoản
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <span className="logout-btn" onClick={logOutUser}>
-            <FaSignOutAlt /> logout
+            <FaSignOutAlt /> Đăng xuất
           </span>
         </DropdownMenuItem>
       </NavItem>
@@ -71,7 +76,7 @@ const UserNav: React.FC = () => {
         name="notiications"
         onClick={handlGetMyNotifications}
         offset={{ x: -20, y: 10 }}
-        className={`notification-nav ${notifications.length > 0 ? "badge" : ""}`}
+        className={`notification-nav ${notifications.length > 0 ? 'badge' : ''}`}
         dropDownScrollableAt={400}
         dropDownOnClickClose={false}
         Icon={FaBell}>

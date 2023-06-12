@@ -1,11 +1,12 @@
-import React from "react";
-import "./Pagination.scss";
-import "./Pagination-dark.scss";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
-import { PaginationProps } from "./";
+import React from 'react';
+import './Pagination.scss';
+import './Pagination-dark.scss';
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+import { PaginationProps } from './';
 
-// TODO create a usePagination hook for currentPage total and new page handler
+// tạo hook usePagination cho trình xử lý trang mới và tổng số trang hiện tại
 
+//Hàm tạo phân trang
 const Pagination: React.FC<PaginationProps> = ({ current, total, handleChange }) => {
   const previousPage = () => {
     handleChange(current - 1);
@@ -27,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = ({ current, total, handleChange })
             </button>
             <div
               aria-label="Previouse page"
-              className={`pagination__dots ${current - 1 === 1 ? "hide" : ""}`}>
+              className={`pagination__dots ${current - 1 === 1 ? 'hide' : ''}`}>
               ...
             </div>
             <button onClick={previousPage} className="pagination__item">
@@ -45,7 +46,7 @@ const Pagination: React.FC<PaginationProps> = ({ current, total, handleChange })
             <button aria-label="Next page" onClick={nextPage} className="pagination__item">
               {current + 1}
             </button>
-            <div className={`pagination__dots ${current + 1 === total ? "hide" : ""}`}>...</div>
+            <div className={`pagination__dots ${current + 1 === total ? 'hide' : ''}`}>...</div>
             <button
               aria-label="Next page arrow"
               onClick={nextPage}

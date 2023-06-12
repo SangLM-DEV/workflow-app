@@ -46,10 +46,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

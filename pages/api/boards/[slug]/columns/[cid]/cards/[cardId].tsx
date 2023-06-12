@@ -28,16 +28,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       case 'DELETE': {
         await db.collection('cards').deleteOne({ _id: cardId, columnId: cid });
 
-        res.send({ messsage: 'Deleted' });
+        res.send({ messsage: 'Đã xóa' });
 
         break;
       }
 
       default:
-        res.send({ message: 'Invalid request type' });
+        res.send({ message: 'Loại yêu cầu không hợp lệ' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

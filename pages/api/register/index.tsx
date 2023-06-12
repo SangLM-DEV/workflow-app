@@ -25,7 +25,7 @@ const createUser = async (body, res) => {
 
     if (isExistingUser) {
       const data = {
-        message: 'Email is already registered'
+        message: 'Email này đã được sử dụng'
       };
 
       res.status(404).send(data);

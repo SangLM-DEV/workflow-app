@@ -14,19 +14,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const tokenValue = await db.collection('token').findOne({ token });
 
         if (tokenValue) {
-          res.status(200).send({ message: 'valid' });
+          res.status(200).send({ message: 'Hợp lệ' });
         } else {
-          res.status(404).send({ message: 'Not valid' });
+          res.status(404).send({ message: 'Không hợp lệ' });
         }
 
         break;
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

@@ -1,12 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from 'react';
 
-import { createColumn } from "service";
-import { NewColumnProps } from "./";
-import "./NewColumn.scss";
-import "./NewColumn-dark.scss";
+import { createColumn } from 'service';
+import { NewColumnProps } from './';
+import './NewColumn.scss';
+import './NewColumn-dark.scss';
 
+//Hàm tạo cột mới
 const NewColumn: React.FC<NewColumnProps> = ({ boardId }) => {
-  const [columnName, setColumnName] = useState<string>("");
+  const [columnName, setColumnName] = useState<string>('');
 
   const handleNewColumnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newColumnName = event.target.value;
@@ -15,14 +16,15 @@ const NewColumn: React.FC<NewColumnProps> = ({ boardId }) => {
     }
   };
 
+  //hàm tạo cột mới
   const createNewColumn = async (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" && columnName.trim() !== "") {
+    if (event.key === 'Enter' && columnName.trim() !== '') {
       createColumn({
         boardId,
         payload: { name: columnName },
         res: (response) => {
-          if (!response.error) setColumnName("");
-        },
+          if (!response.error) setColumnName('');
+        }
       });
     }
   };
@@ -33,7 +35,7 @@ const NewColumn: React.FC<NewColumnProps> = ({ boardId }) => {
         value={columnName}
         onChange={handleNewColumnChange}
         type="text"
-        placeholder="+ new column"
+        placeholder="+ Cột mới"
       />
     </div>
   );

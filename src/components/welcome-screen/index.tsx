@@ -14,13 +14,13 @@ const WelcomeScreen = (): JSX.Element => {
           p="4rem">
           <Box>
             <Text fontSize={['40px', '40px', '50px', '50px']} fontWeight="bold" lineHeight="50px">
-              WorkFlow helps teams move work forward.
+              WorkFlow giúp các nhóm tiến hành công việc.
             </Text>
             <Text
               fontSize={['1rem', '1rem', '1.5rem', '1.5rem']}
               width={['100%', '100%', '50%', '50%']}>
-              Collaborate, manage projects, and reach new productivity peaks. From high rises to the
-              home office, the way your team works is unique - accomplish it all with WorkFlow.
+              Cộng tác, quản lý dự án và đạt đến đỉnh năng suất mới. Từ nhà cao tầng đến văn phòng
+              tại nhà, cách nhóm của bạn làm việc là duy nhất - hoàn thành tất cả với WorkFlow.
             </Text>
           </Box>
           <Box>

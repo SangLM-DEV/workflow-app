@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import NavItem from "components/layout/Navbar/NavItem/NavItem";
-import Login from "dialogs/Login";
-import Register from "dialogs/Register/Register";
-import { ModalContext, ModalActionType } from "context/ModalContext";
-import "./DefaultNav.scss";
+import React, { useContext } from 'react';
+import NavItem from 'components/layout/Navbar/NavItem/NavItem';
+import Login from 'dialogs/Login';
+import Register from 'dialogs/Register/Register';
+import { ModalContext, ModalActionType } from 'context/ModalContext';
+import './DefaultNav.scss';
 
 const DefaultNav: React.FC = () => {
   const { modalDispatch } = useContext(ModalContext);
@@ -11,13 +11,13 @@ const DefaultNav: React.FC = () => {
   const openLoginModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <Login />, title: "Login", size: "s" },
+      payload: { render: <Login />, title: 'Đăng nhập', size: 's' }
     });
   };
   const openRegisterModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <Register />, title: "Register", size: "s" },
+      payload: { render: <Register />, title: 'Đăng ký', size: 's' }
     });
   };
 

@@ -1,29 +1,31 @@
-import React, { useContext, useEffect } from "react";
-import "./Modal.scss";
-import "./Modal-dark.scss";
-import Backdrop from "../Backdrop";
-import Portal from "components/layout/Portal";
+import React, { useContext, useEffect } from 'react';
+import './Modal.scss';
+import './Modal-dark.scss';
+import Backdrop from '../Backdrop';
+import Portal from 'components/layout/Portal';
 
-import { FaTimes } from "react-icons/fa";
+import { FaTimes } from 'react-icons/fa';
 
-import { ModalContext, ModalActionType } from "context/ModalContext";
+import { ModalContext, ModalActionType } from 'context/ModalContext';
 
 const Modal: React.FC = () => {
   const {
     modalState: { show, title, render, size },
-    modalDispatch,
+    modalDispatch
   } = useContext(ModalContext);
 
+  //hàm đóng modal bằng ESC
   useEffect(() => {
     const escKeyDown = (e: any) => {
-      if (e.code === "Escape") modalDispatch({ type: ModalActionType.CLOSE });
+      if (e.code === 'Escape') modalDispatch({ type: ModalActionType.CLOSE });
     };
-    document.addEventListener("keydown", escKeyDown, false);
+    document.addEventListener('keydown', escKeyDown, false);
     return () => {
-      document.removeEventListener("keydown", escKeyDown);
+      document.removeEventListener('keydown', escKeyDown);
     };
   }, [modalDispatch]);
 
+  //Hàm đóng modal bằng button Close
   const closeModal = () => {
     modalDispatch({ type: ModalActionType.CLOSE });
   };

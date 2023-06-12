@@ -70,12 +70,12 @@ const InviteModal = () => {
   return (
     <>
       <Button onClick={onOpen} size="xs" ml="5px">
-        Invite
+        Mời
       </Button>
       <Modal onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Invite User</ModalHeader>
+          <ModalHeader>Mời người dùng</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Input
@@ -94,7 +94,7 @@ const InviteModal = () => {
               onClick={handleClick}
               isLoading={isMailSending}
               loadingText="Sending">
-              Invite
+              Mời
             </Button>
           </ModalFooter>
         </ModalContent>

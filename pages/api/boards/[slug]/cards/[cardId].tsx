@@ -11,14 +11,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     switch (requestType) {
       case 'GET': {
-        res.send({ message: 'Get more details of the card' });
+        res.send({ message: 'Nhận thêm thông tin chi tiết của thẻ' });
         return;
       }
 
       case 'DELETE': {
         await db.collection('cards').deleteOne({ _id: cardId });
 
-        res.send({ message: 'A card has been deleted' });
+        res.send({ message: 'Một thẻ đã bị xóa' });
 
         return;
       }
@@ -28,15 +28,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           .collection('cards')
           .updateOne({ _id: cardId, boardId: slug }, { $set: { ...req.body } });
 
-        res.send({ message: 'Card updated' });
+        res.send({ message: 'Đã cập nhật thẻ' });
         return;
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

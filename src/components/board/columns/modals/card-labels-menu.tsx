@@ -65,7 +65,7 @@ const CardLabel: FC<IProps> = ({ id, boardId }) => {
         <ListItem>
           <Menu size="xs">
             <MenuButton leftIcon={<MdLabelOutline />} size="xs" whiteSpace="nowrap" as={Button}>
-              Labels
+              Nhãn
             </MenuButton>
             <MenuList padding="5px">
               {cardLabels.map((item, index) => (

@@ -1,10 +1,11 @@
-import React from "react";
-import Portal from "components/layout/Portal";
-import "./Alert.scss";
-import { AlertProps, AlertTypes } from ".";
+import React from 'react';
+import Portal from 'components/layout/Portal';
+import './Alert.scss';
+import { AlertProps, AlertTypes } from '.';
 
-import { FaCheck, FaExclamationTriangle, FaExclamationCircle } from "react-icons/fa";
+import { FaCheck, FaExclamationTriangle, FaExclamationCircle } from 'react-icons/fa';
 
+//hàm trả về các khung thông báo cảnh báo/lỗi/thành công
 const Alert: React.FC<AlertProps> = ({ message, type, show }) => {
   const warningIcon = () => {
     switch (type) {

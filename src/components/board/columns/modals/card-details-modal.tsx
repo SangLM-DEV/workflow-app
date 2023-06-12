@@ -89,7 +89,7 @@ const CardDetailsModal: FC<Props> = ({ onClose, isOpen, card }) => {
               {user?.fullName}
             </MenuItem>
           ))}
-          <MenuItem onClick={() => handleClick('')}>Unassign</MenuItem>
+          <MenuItem onClick={() => handleClick('')}>Bỏ chỉ định</MenuItem>
         </MenuList>
       </Menu>
     );
@@ -123,7 +123,7 @@ const CardDetailsModal: FC<Props> = ({ onClose, isOpen, card }) => {
               <Box width="100%" marginTop="2rem">
                 <Box display="flex" fontWeight="bold">
                   <GrTextAlignFull />
-                  <Text marginLeft="1rem">Description</Text>
+                  <Text marginLeft="1rem">Mô tả</Text>
                 </Box>
                 <Box marginLeft="1.5rem" minHeight="200px" width="90%">
                   <QuillEditor value={description} onChange={setDescription} />
@@ -156,7 +156,7 @@ const CardDetailsModal: FC<Props> = ({ onClose, isOpen, card }) => {
               disabled={cardRequest}
               isLoading={cardRequest}
               loadingText="Updating">
-              <AiOutlineClose /> Close
+              <AiOutlineClose /> Đóng
             </Button>
           </ModalFooter>
         </ModalContent>

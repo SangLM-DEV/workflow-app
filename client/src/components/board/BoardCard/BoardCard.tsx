@@ -1,11 +1,11 @@
-import React, { MouseEvent } from "react";
-import { useHistory } from "react-router-dom";
-import { ReactComponent as Pin } from "assets/images/pin-empty.svg";
-import { ReactComponent as Pined } from "assets/images/pin-full.svg";
-import "./BoardCard.scss";
-import "./BoardCard-dark.scss";
-import BoardOptions from "./BoardOptions/BoardOptions";
-import { BoardcardProps } from "./";
+import React, { MouseEvent } from 'react';
+import { useHistory } from 'react-router-dom';
+import { ReactComponent as Pin } from 'assets/images/pin-empty.svg';
+import { ReactComponent as Pined } from 'assets/images/pin-full.svg';
+import './BoardCard.scss';
+import './BoardCard-dark.scss';
+import BoardOptions from './BoardOptions/BoardOptions';
+import { BoardcardProps } from './';
 
 const BoardCard: React.FC<BoardcardProps> = ({
   boardName,
@@ -13,15 +13,17 @@ const BoardCard: React.FC<BoardcardProps> = ({
   pinBoard,
   removeBoard,
   isPinned = false,
-  isAuthor = false,
+  isAuthor = false
 }) => {
   const history = useHistory();
 
+  //hàm ghim bảng
   const togglePinBoard = (e: MouseEvent) => {
     e.stopPropagation();
     pinBoard();
   };
 
+  //đi đến bảng có id đc chỉ định
   const goToBoard = () => {
     history.push(`/board/${boardId}`);
   };
@@ -50,11 +52,7 @@ const BoardCard: React.FC<BoardcardProps> = ({
               <Pin data-testid={`${boardId}-pin`} />
             )}
           </span>
-          <BoardOptions
-            boardId={boardId}
-            removeBoardCallback={removeBoard}
-            isAuthor={isAuthor}
-          />
+          <BoardOptions boardId={boardId} removeBoardCallback={removeBoard} isAuthor={isAuthor} />
         </div>
       </div>
     </div>

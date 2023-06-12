@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { email, password } = req.body;
 
     // Check any field is empty
-    if (!email || !password) res.status(400).send({ error: 'email or password is missing' });
+    if (!email || !password) res.status(400).send({ error: 'Email hoặc mật khẩu sai' });
 
     const { db, client } = await connectToDatabase();
 
@@ -49,12 +49,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             res.send({ message: 'success', token, id: userDetail._id, status: 200 });
           } else {
-            res.status(404).send({ error: 'Invalid username or password' });
+            res.status(404).send({ error: 'Sai email hoặc mật khẩu' });
           }
         });
       } else {
         // User does not exits
-        res.status(404).send({ error: 'Invalid username or password' });
+        res.status(404).send({ error: 'Sai email hoặc mật khẩu' });
       }
     }
   }

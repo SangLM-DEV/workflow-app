@@ -1,27 +1,27 @@
-import React, { useState, useContext, useEffect, useRef, useCallback } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import "./BoardPage.scss";
-import "./BoardPage-dark.scss";
-import ExpandText from "components/general/ExpandText";
-import Button from "components/general/Button";
-import TaskBoard from "./TaskBoard";
-import BoardOptions from "components/board/BoardCard/BoardOptions";
-import { FaUsers, FaTags } from "react-icons/fa";
-import { ModalContext, ModalActionType } from "context/ModalContext";
-import { UserContext, UserActionType } from "context/UserContext";
-import Tags from "dialogs/Tags/Tags";
-import TaskDisplay from "dialogs/TaskDisplay";
-import BoardMembers from "dialogs/BoardMembers/BoardMembers";
-import { TaskContext, TasksActionType } from "context/TaskContext";
-import { getLoggedInUserBoardRole, getBoard } from "service";
-import LoadingOverlay from "components/layout/LoadingOverlay/LoadingOverlay";
-import { onDragEnd } from "./dragHelper";
-import { useHistory } from "react-router-dom";
-import queryString from "query-string";
-import { BoardPageProps } from ".";
-import { UserBoardRoles } from "types/general";
-import axios, { CancelTokenSource } from "axios";
-import { ws } from "config/socket.conf";
+import React, { useState, useContext, useEffect, useRef, useCallback } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import './BoardPage.scss';
+import './BoardPage-dark.scss';
+import ExpandText from 'components/general/ExpandText';
+import Button from 'components/general/Button';
+import TaskBoard from './TaskBoard';
+import BoardOptions from 'components/board/BoardCard/BoardOptions';
+import { FaUsers, FaTags } from 'react-icons/fa';
+import { ModalContext, ModalActionType } from 'context/ModalContext';
+import { UserContext, UserActionType } from 'context/UserContext';
+import Tags from 'dialogs/Tags/Tags';
+import TaskDisplay from 'dialogs/TaskDisplay';
+import BoardMembers from 'dialogs/BoardMembers/BoardMembers';
+import { TaskContext, TasksActionType } from 'context/TaskContext';
+import { getLoggedInUserBoardRole, getBoard } from 'service';
+import LoadingOverlay from 'components/layout/LoadingOverlay/LoadingOverlay';
+import { onDragEnd } from './dragHelper';
+import { useHistory } from 'react-router-dom';
+import queryString from 'query-string';
+import { BoardPageProps } from '.';
+import { UserBoardRoles } from 'types/general';
+import axios, { CancelTokenSource } from 'axios';
+import { ws } from 'config/socket.conf';
 
 const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
   const boardId: string = match.params.id;
@@ -30,8 +30,8 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
     name: string;
     description: string;
   }>({
-    name: "",
-    description: "",
+    name: '',
+    description: ''
   });
   const { tasksState, tasksDispatch } = useContext(TaskContext);
   const [isTaskLoading, setTaskLoading] = useState<boolean>(false);
@@ -40,35 +40,37 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
   const { modalDispatch } = useContext(ModalContext);
   const {
     userState: { user, currentBoard },
-    userDispatch,
+    userDispatch
   } = useContext(UserContext);
 
   const history = useHistory();
   const query = queryString.parse(location.search);
 
+  //lấy vai trò người dùng đã đăng nhập
   const getLoggedInUserRole = useCallback(async () => {
     const { data, status } = await getLoggedInUserBoardRole({
       boardId,
       userId: user._id,
-      cancelToken: source.current?.token,
+      cancelToken: source.current?.token
     });
     if (status === 200) {
-      ws.emit("joinBoardRoom", { room: boardId });
+      ws.emit('joinBoardRoom', { room: boardId });
       if (!!data) {
         const { member } = data;
         userDispatch({
           type: UserActionType.ROLE,
-          payload: { role: member.role, boardId },
+          payload: { role: member.role, boardId }
         });
       }
     }
   }, [boardId, user, userDispatch]);
 
+  //lấy nhiệm vụ của bảng
   const getBoardTasks = useCallback(async () => {
     const { data, status } = await getBoard({
       boardId,
       setLoading: setTaskLoading,
-      cancelToken: source.current?.token,
+      cancelToken: source.current?.token
     });
     if (!!data) {
       const { columns, name, description } = data;
@@ -83,14 +85,15 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
   useEffect(() => {
     source.current = axios.CancelToken.source();
 
+    //mở nhiệm vụ khi khởi tạo
     const openTaskOnInit = () => {
       modalDispatch({
         type: ModalActionType.OPEN,
         payload: {
           render: <TaskDisplay taskId={query.task as string} />,
-          title: "Task Details",
-          size: "l",
-        },
+          title: 'Chi tiết nhiệm vụ',
+          size: 'l'
+        }
       });
     };
 
@@ -103,26 +106,31 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
 
     return () => {
       if (watingTimeout.current) clearTimeout(watingTimeout.current);
-      ws.emit("leaveBoardRoom", { room: boardId });
+      ws.emit('leaveBoardRoom', { room: boardId });
       source.current?.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardId, user, getLoggedInUserRole, getBoardTasks, modalDispatch]);
 
+  //mở modal thêm người  dùng vào dự án
   const openBoardMembersModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <BoardMembers boardId={boardId} />, title: "Board Members" },
+      payload: { render: <BoardMembers boardId={boardId} />, title: 'Thành viên' }
     });
   };
+
+  //mở modal thẻ của bảng
   const openBoardTagsModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
-      payload: { render: <Tags boardId={boardId} />, title: "Board Tags" },
+      payload: { render: <Tags boardId={boardId} />, title: 'Thẻ màu của bảng' }
     });
   };
+
+  //chuyển hướng về trang chủ
   const redirectToDashboard = () => {
-    history.replace("/");
+    history.replace('/');
   };
 
   return (
@@ -134,11 +142,11 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
         <div className="board-page__controlls">
           <Button onClick={openBoardMembersModal}>
             <FaUsers />
-            <span>Peolpe</span>
+            <span>Mọi người</span>
           </Button>
           <Button onClick={openBoardTagsModal}>
             <FaTags />
-            <span>Tags</span>
+            <span>Thẻ</span>
           </Button>
           <BoardOptions
             boardId={boardId}
@@ -146,7 +154,7 @@ const BoardPage: React.FC<BoardPageProps> = ({ match, location }) => {
             isAuthor={currentBoard.role === UserBoardRoles.OWNER}
           />
         </div>
-        <hr className="break-line" style={{ width: "100%" }} />
+        <hr className="break-line" style={{ width: '100%' }} />
         <DragDropContext
           onDragEnd={(result) => onDragEnd(boardId, result, tasksState, tasksDispatch)}>
           <TaskBoard boardId={boardId} />

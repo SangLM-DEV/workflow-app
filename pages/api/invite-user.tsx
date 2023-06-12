@@ -16,16 +16,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const isExistingUser = boardData.users.indexOf(user._id);
 
         if (isExistingUser > -1) {
-          res.status(400).send({ message: 'User is already added to the board' });
+          res.status(400).send({ message: 'Người dùng đã được thêm vào bảng.' });
         } else {
           const board = await db
             .collection('boards')
             .updateOne({ _id: boardId }, { $push: { users: user?._id } });
 
           if (board) {
-            res.send({ status: 200, message: 'Invited' });
+            res.send({ status: 200, message: 'Được mời' });
           } else {
-            res.send({ status: 404, message: 'Some issues' });
+            res.send({ status: 404, message: 'Một số vấn đề' });
           }
         }
 
@@ -33,10 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

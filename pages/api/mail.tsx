@@ -11,8 +11,8 @@ const sendMail = (email, res, emailData, user) => {
 
   const msg = {
     to: email,
-    from: 'sanglm2207@gmail.com',
-    subject: 'You are invited to join to a WorkFlow board',
+    from: 'baouyen9a@gmail.com',
+    subject: 'Bạn được mời tham gia vào một bảng WorkFlow',
     html: `<div>
       <div style="height:100px; background-color:#26292c; color: white">
         <p>WorkFlowe</p>
@@ -29,11 +29,11 @@ const sendMail = (email, res, emailData, user) => {
   sgMail
     .send(msg)
     .then(() => {
-      res.send({ message: 'Email sent sucessfully', status: 200 });
+      res.send({ message: 'Email được gửi thành công', status: 200 });
     })
     .catch((error) => {
       console.error(error);
-      res.send({ message: 'Failed to send' });
+      res.send({ message: 'Gửi thất bại' });
     });
 };
 
@@ -71,10 +71,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

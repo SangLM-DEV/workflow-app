@@ -39,16 +39,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await db.collection('columns').remove({ boardId: slug });
         await db.collection('boards').deleteOne({ _id: slug });
 
-        res.send({ messsage: 'Delete boards with columns and cards' });
+        res.send({ messsage: 'Xóa bảng có cột và thẻ' });
 
         break;
       }
 
       default:
-        res.send({ message: 'DB error' });
+        res.send({ message: 'Lỗi cơ sở dữ liệu' });
         break;
     }
   } else {
-    res.send({ msg: 'DB connection error', status: 400 });
+    res.send({ msg: 'Lỗi kết nối cơ sở dữ liệu', status: 400 });
   }
 }

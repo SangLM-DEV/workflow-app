@@ -1,88 +1,118 @@
-import React, { useContext, useCallback } from "react";
-import DragableColumn from "components/board/Column/DraggableColumn/DragableColumn";
-import { TaskContext, TasksActionType } from "context/TaskContext";
-import { UserContext } from "context/UserContext";
-import NewColumn from "components/board/NewColumn";
-import { Droppable } from "react-beautiful-dnd";
-import { useWebSocketListener } from "Hooks/useWebSocketListener";
-import { UserBoardRoles } from "types/general";
+import React, { useContext, useCallback } from 'react';
+import DragableColumn from 'components/board/Column/DraggableColumn/DragableColumn';
+import { TaskContext, TasksActionType } from 'context/TaskContext';
+import { UserContext } from 'context/UserContext';
+import NewColumn from 'components/board/NewColumn';
+import { Droppable } from 'react-beautiful-dnd';
+import { useWebSocketListener } from 'Hooks/useWebSocketListener';
+import { UserBoardRoles } from 'types/general';
 
+//hàm nhiệm vụ bảng
 const TaskBoard: React.FC<{ boardId: string }> = ({ boardId }) => {
   const { tasksState, tasksDispatch } = useContext(TaskContext);
   const {
-    userState: { currentBoard },
+    userState: { currentBoard }
   } = useContext(UserContext);
 
-  const createNewColumn = useCallback((newColumn: string) => {
-    tasksDispatch({
-      type: TasksActionType.CREATE_COLUMN,
-      payload: {
-        newColumn,
-      },
-    });
-  }, [tasksDispatch]);
-  const deleteSocketColumn = useCallback((deleteResponse: any) => {
-    tasksDispatch({
-      type: TasksActionType.DELETE_COLUMN,
-      payload: {
-        columnIndex: deleteResponse.index,
-      },
-    });
-  }, [tasksDispatch]);
-  const moveSocketColumn = useCallback((moveResponse: any) => {
-    tasksDispatch({
-      type: TasksActionType.MOVE_COLUMN,
-      payload: {
-        destinationIndex: moveResponse.destination,
-        sourceIndex: moveResponse.source,
-      },
-    });
-  }, [tasksDispatch]);
-  const createTask = useCallback((data: any) => {
-    const { error, task, columnIndex } = data;
-    if (!error) {
+  //hàm tạo cột mới
+  const createNewColumn = useCallback(
+    (newColumn: string) => {
       tasksDispatch({
-        type: TasksActionType.CREATE_TASK,
+        type: TasksActionType.CREATE_COLUMN,
         payload: {
-          columnIndex,
-          task,
-        },
+          newColumn
+        }
       });
-    }
-  }, [tasksDispatch]);
-  const deleteTask = useCallback((data: any) => {
-    const { error, columnIndex, taskIndex } = data;
-    if (!error) {
+    },
+    [tasksDispatch]
+  );
+
+  //hàm xóa cột
+  const deleteSocketColumn = useCallback(
+    (deleteResponse: any) => {
       tasksDispatch({
-        type: TasksActionType.DELETE_TASK,
+        type: TasksActionType.DELETE_COLUMN,
         payload: {
-          columnIndex,
-          taskIndex,
-        },
+          columnIndex: deleteResponse.index
+        }
       });
-    }
-  }, [tasksDispatch]);
-  const moveTask = useCallback((data: any) => {
-    const { error, source, destination } = data;
-    if (!error) {
+    },
+    [tasksDispatch]
+  );
+
+  //hàm di chuyển cột
+  const moveSocketColumn = useCallback(
+    (moveResponse: any) => {
       tasksDispatch({
-        type: TasksActionType.MOVE_TASK,
+        type: TasksActionType.MOVE_COLUMN,
         payload: {
-          column: { sourceIndex: source.columnIndex, destinationIndex: destination.columnIndex },
-          task: { sourceIndex: source.taskIndex, destinationIndex: destination.taskIndex },
-        },
+          destinationIndex: moveResponse.destination,
+          sourceIndex: moveResponse.source
+        }
       });
-    }
-  }, [tasksDispatch]);
+    },
+    [tasksDispatch]
+  );
 
-  useWebSocketListener("createNewColumn", createNewColumn);
-  useWebSocketListener("deleteColumn", deleteSocketColumn);
-  useWebSocketListener("moveColumn", moveSocketColumn);
-  useWebSocketListener("createTask", createTask);
-  useWebSocketListener("deleteTask", deleteTask);
-  useWebSocketListener("moveTask", moveTask);
+  //hàm tạo nhiệm vụ
+  const createTask = useCallback(
+    (data: any) => {
+      const { error, task, columnIndex } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.CREATE_TASK,
+          payload: {
+            columnIndex,
+            task
+          }
+        });
+      }
+    },
+    [tasksDispatch]
+  );
 
+  //hàm xóa nhiệm vụ
+  const deleteTask = useCallback(
+    (data: any) => {
+      const { error, columnIndex, taskIndex } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.DELETE_TASK,
+          payload: {
+            columnIndex,
+            taskIndex
+          }
+        });
+      }
+    },
+    [tasksDispatch]
+  );
 
+  //hàm di chuyển nhiệm vụ
+  const moveTask = useCallback(
+    (data: any) => {
+      const { error, source, destination } = data;
+      if (!error) {
+        tasksDispatch({
+          type: TasksActionType.MOVE_TASK,
+          payload: {
+            column: { sourceIndex: source.columnIndex, destinationIndex: destination.columnIndex },
+            task: { sourceIndex: source.taskIndex, destinationIndex: destination.taskIndex }
+          }
+        });
+      }
+    },
+    [tasksDispatch]
+  );
+
+  useWebSocketListener('createNewColumn', createNewColumn);
+  useWebSocketListener('deleteColumn', deleteSocketColumn);
+  useWebSocketListener('moveColumn', moveSocketColumn);
+  useWebSocketListener('createTask', createTask);
+  useWebSocketListener('deleteTask', deleteTask);
+  useWebSocketListener('moveTask', moveTask);
+
+  //hàm ủy quyền
   const isAuthorized = () => {
     const { role } = currentBoard;
     return role === UserBoardRoles.OWNER || role === UserBoardRoles.ADMIN;

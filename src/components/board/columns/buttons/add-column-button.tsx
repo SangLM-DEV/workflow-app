@@ -29,7 +29,7 @@ const AddColumnButton: FC<Props> = ({ addColumn }) => {
         isLoading={columnRequest}
         disabled={columnRequest}
         loadingText="Adding column">
-        + Add a Column
+        + Thêm cột
       </Button>
     </Box>
   );

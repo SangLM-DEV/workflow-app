@@ -1,84 +1,92 @@
-import React, { useState, useContext, useRef } from "react";
-import "./Column.scss";
-import { FaRegPlusSquare, FaEllipsisV, FaTrashAlt, FaEdit } from "react-icons/fa";
-import Task from "components/board/Task";
-import DropdownMenu from "components/general/DropdownMenu/DropdownMenu";
-import DropdownMenuItem from "components/general/DropdownMenu/DropdownMenuItem";
-import { ModalContext, ModalActionType } from "context/ModalContext";
-import { TaskContext, TasksActionType } from "context/TaskContext";
-import { UserContext } from "context/UserContext";
-import ColumnNameInput from "./ColumnNameInput";
-import { updateBoardColumn } from "service";
-import { deleteColumn } from "service";
+import React, { useState, useContext, useRef } from 'react';
+import './Column.scss';
+import { FaRegPlusSquare, FaEllipsisV, FaTrashAlt, FaEdit } from 'react-icons/fa';
+import Task from 'components/board/Task';
+import DropdownMenu from 'components/general/DropdownMenu/DropdownMenu';
+import DropdownMenuItem from 'components/general/DropdownMenu/DropdownMenuItem';
+import { ModalContext, ModalActionType } from 'context/ModalContext';
+import { TaskContext, TasksActionType } from 'context/TaskContext';
+import { UserContext } from 'context/UserContext';
+import ColumnNameInput from './ColumnNameInput';
+import { updateBoardColumn } from 'service';
+import { deleteColumn } from 'service';
 
-import { Droppable } from "react-beautiful-dnd";
+import { Droppable } from 'react-beautiful-dnd';
 
-import TaskCreate from "dialogs/TaskEditor/TaskCreate";
-import { ColumnProps } from "./";
-import { UserBoardRoles } from "types/general";
+import TaskCreate from 'dialogs/TaskEditor/TaskCreate';
+import { ColumnProps } from './';
+import { UserBoardRoles } from 'types/general';
 
+//Hàm nhận dữ liệu cột
 const Column: React.FC<ColumnProps> = ({
   columnName,
   columnId,
   columnIndex,
   boardId,
-  listOfTasks,
+  listOfTasks
 }) => {
   const { modalDispatch } = useContext(ModalContext);
   const { tasksDispatch } = useContext(TaskContext);
   const {
-    userState: { currentBoard },
+    userState: { currentBoard }
   } = useContext(UserContext);
 
   const [showTitleInput, setShowTitleInput] = useState<boolean>(false);
 
   const anchorElement = useRef(null);
 
+  //Mở phương thức thẻ của bảng
   const openBoardTagsModal = () => {
     modalDispatch({
       type: ModalActionType.OPEN,
       payload: {
         render: <TaskCreate columnId={columnId} boardId={boardId} />,
-        title: "New Task",
-        size: "l",
-      },
+        title: 'Nhiệm vụ mới',
+        size: 'l'
+      }
     });
   };
 
+  //Hàm xóa cột
   const removeColumn = async () => {
-    const shouldDelete = window.confirm("are you sure you want to delete this column?");
+    const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa cột này không?');
     if (shouldDelete) {
       deleteColumn({ boardId, payload: { columnId, columnIndex } });
     }
   };
 
+  //hàm kích hoạt tên cột chỉnh sửa đầu vào
   const activateColumnNameEditInput = () => {
     setShowTitleInput(true);
   };
+
+  //hàm vô hiệu hóa tên cột chỉnh sửa đầu vào
   const dissableColumnNameEditInput = () => {
     setShowTitleInput(false);
   };
 
+  //Hàm thay đổi tên cột khi ấn Enter
   const changeColumnNameOnKeyPressEnter = async (newName: string) => {
     const { status } = await updateBoardColumn({
       boardId,
       columnId,
       payload: {
-        name: newName,
-      },
+        name: newName
+      }
     });
     if (status === 200) {
       tasksDispatch({
         type: TasksActionType.CHANGE_COLUMN_NAME,
         payload: {
           columnId,
-          newName,
-        },
+          newName
+        }
       });
       setShowTitleInput(false);
     }
   };
 
+  //Hàm ủy quyền / phân quyền
   const isAuthorized = () => {
     const { role } = currentBoard;
     return role === UserBoardRoles.ADMIN || role === UserBoardRoles.OWNER;
@@ -91,7 +99,7 @@ const Column: React.FC<ColumnProps> = ({
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className={`task-column ${snapshot.isDraggingOver ? "task-column--active" : ""}`}>
+            className={`task-column ${snapshot.isDraggingOver ? 'task-column--active' : ''}`}>
             <header className="task-column__header">
               <span className="task-column__header__task-count">{listOfTasks.length}</span>
               <ColumnNameInput
@@ -114,11 +122,11 @@ const Column: React.FC<ColumnProps> = ({
                   <DropdownMenu anchorEl={anchorElement} className="column-more-options">
                     <DropdownMenuItem onClick={removeColumn}>
                       <FaTrashAlt />
-                      Delete
+                      Xóa
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={activateColumnNameEditInput}>
                       <FaEdit />
-                      Edit
+                      Sửa
                     </DropdownMenuItem>
                   </DropdownMenu>
                 </>

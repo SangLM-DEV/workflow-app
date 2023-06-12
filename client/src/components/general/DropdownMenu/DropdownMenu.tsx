@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./DropdownMenu.scss";
-import "./DropdownMenu-dark.scss";
-import Portal from "components/layout/Portal";
-import useWindowSize from "Hooks/useWindowSize";
-import { DropdownMenuProps } from ".";
-import { useClickOutside } from "Hooks/useClickOutside";
+import React, { useEffect, useRef, useState } from 'react';
+import './DropdownMenu.scss';
+import './DropdownMenu-dark.scss';
+import Portal from 'components/layout/Portal';
+import useWindowSize from 'Hooks/useWindowSize';
+import { DropdownMenuProps } from '.';
+import { useClickOutside } from 'Hooks/useClickOutside';
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({
   className,
@@ -12,7 +12,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   anchorEl,
   offset = { x: 0, y: 0 },
   onClickClose = true,
-  scrollableAt,
+  scrollableAt
 }) => {
   const [width] = useWindowSize();
   const [cords, setCords] = useState<{ left: number; top: number }>({ left: 0, top: 0 });
@@ -20,9 +20,11 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   const offsetRef = useRef(offset);
   const dropDownMenuRef = useRef<HTMLUListElement>(null);
 
+  //Hàm đóng menu
   const closeMenuClickHandler = () => setShow(false);
   useClickOutside(dropDownMenuRef, closeMenuClickHandler);
 
+  //Nếu lựa chọn khác thì gọi hàm mở menu
   useEffect(() => {
     const dropDownMenuAnchorElement = anchorEl.current;
 
@@ -30,23 +32,23 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
       const rect = anchorEl.current.getBoundingClientRect();
       setCords({
         left: rect.x + rect.width + offsetRef.current.x,
-        top: rect.y + window.scrollY + offsetRef.current.y,
+        top: rect.y + window.scrollY + offsetRef.current.y
       });
       setShow(true);
     };
 
-    dropDownMenuAnchorElement.addEventListener("click", openMenu);
+    dropDownMenuAnchorElement.addEventListener('click', openMenu);
 
     setShow(false);
     return () => {
-      dropDownMenuAnchorElement.removeEventListener("click", openMenu);
+      dropDownMenuAnchorElement.removeEventListener('click', openMenu);
     };
   }, [width, anchorEl]);
 
   const computeClassName = () => {
-    const classes: string[] = ["drop-down-menu", "scrollbar"];
-    classes.push(className || "");
-    return classes.join(" ");
+    const classes: string[] = ['drop-down-menu', 'scrollbar'];
+    classes.push(className || '');
+    return classes.join(' ');
   };
 
   if (show) {

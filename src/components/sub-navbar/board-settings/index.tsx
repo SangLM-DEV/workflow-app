@@ -57,7 +57,7 @@ const BoardSettings = (): JSX.Element => {
       <Modal onClose={onClose} isOpen={isOpen} size="xl" isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Board Settings</ModalHeader>
+          <ModalHeader>Cài đặt bảng</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Tabs isFitted variant="enclosed">
@@ -68,14 +68,14 @@ const BoardSettings = (): JSX.Element => {
               <TabPanels>
                 <TabPanel>
                   <FormControl id="email">
-                    <FormLabel>Board name</FormLabel>
+                    <FormLabel>Tên bảng</FormLabel>
                     <Input
                       value={board.name}
                       onChange={(e) =>
                         dispatch(updateBoardDetail({ type: 'name', value: e.target.value }))
                       }
                     />
-                    <FormHelperText>You can change this any time</FormHelperText>
+                    <FormHelperText>Bạn có thể thay đổi bất cứ lúc nào</FormHelperText>
                   </FormControl>
                   <Box align="right">
                     <Button
@@ -83,12 +83,12 @@ const BoardSettings = (): JSX.Element => {
                       color="white"
                       onClick={handleSave}
                       isLoading={boardDetail.isLoading}>
-                      <AiOutlineCheck /> &nbsp; Save
+                      <AiOutlineCheck /> &nbsp; Lưu
                     </Button>
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                  <p>To delete your board, Click on Delete button.</p>
+                  <p>Để xóa bảng của bạn hãy nhấp vào nút xóa</p>
                   <Box align="right">
                     <Button
                       bg="red.500"
@@ -99,7 +99,7 @@ const BoardSettings = (): JSX.Element => {
                       }}
                       isLoading={boardDelete}
                       loadingText="Deleting">
-                      <AiOutlineDelete /> &nbsp;Delete
+                      <AiOutlineDelete /> &nbsp;Xóa
                     </Button>
                   </Box>
                 </TabPanel>

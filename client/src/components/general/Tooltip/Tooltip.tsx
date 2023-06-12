@@ -1,14 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import "./Tooltip.scss";
-import Portal from "components/layout/Portal";
-import { TooltipPorps } from "./index";
+import React, { useRef, useState, useEffect } from 'react';
+import './Tooltip.scss';
+import Portal from 'components/layout/Portal';
+import { TooltipPorps } from './index';
 
+//Mẹo công cụ
 const Tooltip: React.FC<TooltipPorps> = ({
   className,
   children,
   anchorEl,
   debounceTimeout = 500,
-  offset = { x: 0, y: 0 },
+  offset = { x: 0, y: 0 }
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const [cords, setCords] = useState<{ left: number; top: number }>({ left: 0, top: 0 });
@@ -25,7 +26,7 @@ const Tooltip: React.FC<TooltipPorps> = ({
         const toolTipContainerWith = divEl.getBoundingClientRect().width;
         setCords({
           left: rect.x + rect.width / 2 - toolTipContainerWith / 2 + offset.x,
-          top: rect.y + 30 + offset.y,
+          top: rect.y + 30 + offset.y
         });
       }, debounceTimeout);
     };
@@ -36,20 +37,20 @@ const Tooltip: React.FC<TooltipPorps> = ({
     };
 
     const tooltipAnchorElement = anchorEl.current;
-    tooltipAnchorElement.addEventListener("mouseenter", showToolTiphandler);
-    tooltipAnchorElement.addEventListener("mouseleave", hideToolTipHandler);
+    tooltipAnchorElement.addEventListener('mouseenter', showToolTiphandler);
+    tooltipAnchorElement.addEventListener('mouseleave', hideToolTipHandler);
     return () => {
       if (waitingTimout) clearTimeout(waitingTimout);
-      tooltipAnchorElement.removeEventListener("mouseenter", showToolTiphandler);
-      tooltipAnchorElement.removeEventListener("mouseleave", hideToolTipHandler);
+      tooltipAnchorElement.removeEventListener('mouseenter', showToolTiphandler);
+      tooltipAnchorElement.removeEventListener('mouseleave', hideToolTipHandler);
     };
   }, [offset, anchorEl, debounceTimeout]);
-	
-	const computeClassName = () => {
-		const classes: string[] = ["tooltip"];
-		classes.push(className || "");
-		return classes.join(" ");
-	}
+
+  const computeClassName = () => {
+    const classes: string[] = ['tooltip'];
+    classes.push(className || '');
+    return classes.join(' ');
+  };
 
   if (showTooltip) {
     return (

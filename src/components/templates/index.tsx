@@ -16,7 +16,7 @@ const Templates = (): JSX.Element => {
         />
       </Box>
       <Text textAlign="center" fontWeight="bold" fontSize="25px">
-        Under construction...
+        Đang phát triển...
       </Text>
     </Box>
   );

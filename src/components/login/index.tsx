@@ -90,8 +90,8 @@ const Login = () => {
     return (
       <Alert status="error">
         <AlertIcon />
-        <AlertTitle mr={2}>Error</AlertTitle>
-        <AlertDescription>Invalid username or password</AlertDescription>
+        <AlertTitle mr={2}>Lỗi</AlertTitle>
+        <AlertDescription>Sai email hoặc mật khẩu</AlertDescription>
         <CloseButton
           position="absolute"
           right="8px"
@@ -146,7 +146,7 @@ const Login = () => {
             fontSize={['16px', '16px', '20px', '20px']}
             fontWeight="semibold"
             lineHeight="normal">
-            <h1>Log in to WorkFlow</h1>
+            <h1>Đăng nhập vào WorkFlow</h1>
           </Box>
           <Box my={4} textAlign="left">
             <form>
@@ -178,11 +178,11 @@ const Login = () => {
                 onClick={loginUser}
                 isLoading={isFetching}
                 loadingText="Logging">
-                Sign In
+                Đăng nhập
               </Button>
               <Box m="5" textAlign="center">
                 <Link href="/signup" color="brand" p="2">
-                  Sign up for an account
+                  Đăng ký tài khoản
                 </Link>
               </Box>
               {showLoginError()}

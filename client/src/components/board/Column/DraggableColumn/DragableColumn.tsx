@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
-import { ColumnProps } from "../";
-import Column from "../Column";
-import { Draggable } from "react-beautiful-dnd";
-import { UserContext } from "context/UserContext"
-import { UserBoardRoles  } from "types/general";
+import React, { useContext } from 'react';
+import { ColumnProps } from '../';
+import Column from '../Column';
+import { Draggable } from 'react-beautiful-dnd';
+import { UserContext } from 'context/UserContext';
+import { UserBoardRoles } from 'types/general';
 
+//Hàm mô tả khi chuyển task từ cột này sang cột khác
 const DragableColumn: React.FC<ColumnProps> = (props) => {
   const { columnId, columnIndex } = props;
   const { userState } = useContext(UserContext);
@@ -14,7 +15,7 @@ const DragableColumn: React.FC<ColumnProps> = (props) => {
       userState.currentBoard.role === UserBoardRoles.ADMIN ||
       userState.currentBoard.role === UserBoardRoles.OWNER
     );
-  }
+  };
 
   return (
     <Draggable draggableId={columnId} index={columnIndex} isDragDisabled={!isDraggable()}>
