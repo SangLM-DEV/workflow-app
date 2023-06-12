@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A clone of Workflow app which does the basic features of real world Workflow",
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix .",
