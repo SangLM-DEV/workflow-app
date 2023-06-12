@@ -128,7 +128,11 @@ const SignUp = (): JSX.Element => {
     return (
       <Alert status="error">
         <AlertIcon />
+<<<<<<< HEAD
         <AlertTitle mr={2}>Lỗi</AlertTitle>
+=======
+        <AlertTitle mr={2}>Error</AlertTitle>
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
         <AlertDescription>Email đã được sử dụng</AlertDescription>
         <CloseButton
           position="absolute"

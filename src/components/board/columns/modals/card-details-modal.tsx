@@ -81,7 +81,7 @@ const CardDetailsModal: FC<Props> = ({ onClose, isOpen, card }) => {
     return (
       <Menu>
         <MenuButton as={Button} size="xs" rightIcon={<AiOutlineDown />}>
-          Assign To
+          Đã giao
         </MenuButton>
         <MenuList>
           {users.map((user, index) => (
@@ -89,7 +89,11 @@ const CardDetailsModal: FC<Props> = ({ onClose, isOpen, card }) => {
               {user?.fullName}
             </MenuItem>
           ))}
+<<<<<<< HEAD
           <MenuItem onClick={() => handleClick('')}>Bỏ chỉ định</MenuItem>
+=======
+          <MenuItem onClick={() => handleClick('')}>Không giao</MenuItem>
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
         </MenuList>
       </Menu>
     );

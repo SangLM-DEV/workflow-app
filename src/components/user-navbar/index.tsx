@@ -84,7 +84,11 @@ const UserNavBar: FC = () => {
       </Link>
       <Link href="/boards">
         <Button size="xs" ml="5px" mr="10px" my="5px">
+<<<<<<< HEAD
           Bảng công việc
+=======
+          Bảng
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
         </Button>
       </Link>
       <Spacer />

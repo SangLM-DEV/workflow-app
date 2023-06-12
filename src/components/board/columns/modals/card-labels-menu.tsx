@@ -59,13 +59,17 @@ const CardLabel: FC<IProps> = ({ id, boardId }) => {
   return (
     <Box marginTop="2rem" flexDirection="column" width="20%">
       <Text as="samp" whiteSpace="nowrap">
-        ADD TO CARD
+        Thêm vào thẻ
       </Text>
       <List spacing={3} p="5px">
         <ListItem>
           <Menu size="xs">
             <MenuButton leftIcon={<MdLabelOutline />} size="xs" whiteSpace="nowrap" as={Button}>
+<<<<<<< HEAD
               Nhãn
+=======
+              Tiêu đề
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
             </MenuButton>
             <MenuList padding="5px">
               {cardLabels.map((item, index) => (

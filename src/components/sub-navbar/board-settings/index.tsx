@@ -75,7 +75,11 @@ const BoardSettings = (): JSX.Element => {
                         dispatch(updateBoardDetail({ type: 'name', value: e.target.value }))
                       }
                     />
+<<<<<<< HEAD
                     <FormHelperText>Bạn có thể thay đổi bất cứ lúc nào</FormHelperText>
+=======
+                    <FormHelperText>Bạn có thể thay đổi điều này bất cứ lúc nào</FormHelperText>
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
                   </FormControl>
                   <Box align="right">
                     <Button
@@ -88,7 +92,11 @@ const BoardSettings = (): JSX.Element => {
                   </Box>
                 </TabPanel>
                 <TabPanel>
+<<<<<<< HEAD
                   <p>Để xóa bảng của bạn hãy nhấp vào nút xóa</p>
+=======
+                  <p>Để xóa bảng của bạn, hãy nhấp vào nút Xóa.</p>
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
                   <Box align="right">
                     <Button
                       bg="red.500"

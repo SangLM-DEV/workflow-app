@@ -58,6 +58,7 @@ const InviteModal = () => {
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ email, boardId: board._id })
     });
+    console.log('response', response);
 
     const inJSON = await response.json();
 

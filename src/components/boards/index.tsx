@@ -64,7 +64,11 @@ const Boards = (): JSX.Element => {
           colorScheme="green"
           size="lg"
           mt="1rem">
+<<<<<<< HEAD
           Tạo một bảng
+=======
+          Tạo bảng
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
         </Button>
         <Modal onClose={onClose} isOpen={isOpen} isCentered>
           <ModalOverlay />

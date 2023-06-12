@@ -16,7 +16,11 @@ const Templates = (): JSX.Element => {
         />
       </Box>
       <Text textAlign="center" fontWeight="bold" fontSize="25px">
+<<<<<<< HEAD
         Đang phát triển...
+=======
+        Đang hoàn thiện...
+>>>>>>> c67b3dc5188ce3fa19bf1fdd9a09f183e83d4e2c
       </Text>
     </Box>
   );
