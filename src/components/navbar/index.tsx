@@ -54,10 +54,10 @@ const NavBar: FC<IProps> = ({ bg }) => {
     return (
       <>
         <Button fontSize="20" color="brand" variant="link" float="right" mr="2" pr="2">
-          <Link href="/login">Log in</Link>
+          <Link href="/login">Đăng nhập</Link>
         </Button>
         <Button fontSize="md" colorScheme="green" color="white" m="4">
-          <Link href="/signup">Sign up</Link>
+          <Link href="/signup">Đăng ký</Link>
         </Button>
       </>
     );

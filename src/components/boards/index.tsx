@@ -64,12 +64,12 @@ const Boards = (): JSX.Element => {
           colorScheme="green"
           size="lg"
           mt="1rem">
-          Create a board
+          Tạo bảng
         </Button>
         <Modal onClose={onClose} isOpen={isOpen} isCentered>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Create board</ModalHeader>
+            <ModalHeader>Tạo bảng</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Input
@@ -80,7 +80,7 @@ const Boards = (): JSX.Element => {
             </ModalBody>
             <ModalFooter>
               <Button onClick={handleCreate} isLoading={boardRequest} loadingText="Creating board">
-                Create
+                Tạo
               </Button>
             </ModalFooter>
           </ModalContent>

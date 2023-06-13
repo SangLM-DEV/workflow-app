@@ -40,7 +40,7 @@ const SubNavbar = (): JSX.Element => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Choose background image</DrawerHeader>
+          <DrawerHeader>Chọn hình nền</DrawerHeader>
           <DrawerBody>
             <Unsplash />
           </DrawerBody>
@@ -50,7 +50,7 @@ const SubNavbar = (): JSX.Element => {
               onClick={handleSave}
               loadingText="Saving"
               isLoading={board.isLoading}>
-              Save
+              Lưu
             </Button>
           </DrawerFooter>
         </DrawerContent>

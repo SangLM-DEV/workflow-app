@@ -56,7 +56,7 @@ const UserNavBar: FC = () => {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={logout}>Log out</MenuItem>
+              <MenuItem onClick={logout}>Đăng xuất</MenuItem>
             </MenuList>
           </Menu>
         </>
@@ -66,10 +66,10 @@ const UserNavBar: FC = () => {
     return (
       <>
         <Button fontSize="20" color="brand" variant="link" float="right" mr="2" pr="2">
-          <Link href="/login">Log in</Link>
+          <Link href="/login">Đăng nhập</Link>
         </Button>
         <Button fontSize="md" colorScheme="green" color="white" m="4">
-          <Link href="/signup">Sign up</Link>
+          <Link href="/signup">Đăng ký</Link>
         </Button>
       </>
     );
@@ -84,7 +84,7 @@ const UserNavBar: FC = () => {
       </Link>
       <Link href="/boards">
         <Button size="xs" ml="5px" mr="10px" my="5px">
-          Boards
+          Bảng
         </Button>
       </Link>
       <Spacer />

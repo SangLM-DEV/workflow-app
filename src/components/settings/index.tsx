@@ -16,7 +16,7 @@ const Settings = (): JSX.Element => {
         />
       </Box>
       <Text textAlign="center" fontWeight="bold" fontSize="25px">
-        Under construction...
+        Đang hoàn thiện...
       </Text>
     </Box>
   );

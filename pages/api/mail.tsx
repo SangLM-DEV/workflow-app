@@ -39,7 +39,10 @@ const sendMail = (email, res, emailData, user) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  sgMail.setApiKey(
+    process.env.SENDGRID_API_KEY ||
+      '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'
+  );
 
   const { db, client } = await connectToDatabase();
 

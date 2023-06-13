@@ -73,7 +73,7 @@ const Unsplash = () => {
           />
           <InputRightElement width="4.5rem">
             <Button size="sm" onClick={() => findImages(value)}>
-              Search
+              Tìm kiếm
             </Button>
           </InputRightElement>
         </InputGroup>
@@ -105,7 +105,7 @@ const Unsplash = () => {
           size="xs"
           isLoading={isLoading}
           loadingText="Loading Images...">
-          Load more
+          Xem thêm
         </Button>
       </Box>
     </>

@@ -36,6 +36,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const claim = { id: userDetail._id, email: userDetail.email };
             const token = sign({ user: claim }, KEY, { expiresIn: '1h' });
 
+            // Lưu thông tin người dùng vào localStorage
+            // localStorage.setItem('user', JSON.stringify(userDetail));
             res.setHeader(
               'Set-Cookie',
               serialize('token', token, {

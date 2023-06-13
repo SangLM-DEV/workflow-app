@@ -128,7 +128,7 @@ const SignUp = (): JSX.Element => {
       <Alert status="error">
         <AlertIcon />
         <AlertTitle mr={2}>Error</AlertTitle>
-        <AlertDescription>Email already in use</AlertDescription>
+        <AlertDescription>Email đã được sử dụng</AlertDescription>
         <CloseButton
           position="absolute"
           right="8px"
@@ -204,7 +204,7 @@ const SignUp = (): JSX.Element => {
             fontSize={['10px', '10px', '15px', '15px']}
             fontWeight="semibold"
             lineHeight="normal">
-            <h1>Sign up for your account</h1>
+            <h1>Đăng ký tài khoản của bạn</h1>
           </Box>
           <Box my={4} textAlign="left">
             <FormControl isRequired>
@@ -216,7 +216,7 @@ const SignUp = (): JSX.Element => {
                 onChange={handleChange}
                 autoComplete="off"
               />
-              {emailErr && <p color="red">Invalid email.</p>}
+              {emailErr && <p color="red">Email không hợp lệ.</p>}
             </FormControl>
             <FormControl my="4" isRequired>
               <Input
@@ -236,7 +236,7 @@ const SignUp = (): JSX.Element => {
                 placeholder="Create password"
                 onChange={handleChange}
               />
-              {passwordErr && <p color="red">Invalid password.</p>}
+              {passwordErr && <p color="red">Mật khẩu không hợp lệ.</p>}
             </FormControl>
             <FormControl my="4">
               <Input
@@ -257,11 +257,11 @@ const SignUp = (): JSX.Element => {
               onClick={registerUser}
               isLoading={isCreating}
               loadingText="Registering">
-              Sign up
+              Đăng ký
             </Button>
             <Box m="5" textAlign="center">
               <Link href="/login" color="brand" p="2">
-                Already have an account? Log in.
+                Đăng nhập
               </Link>
             </Box>
             {showSignUpError()}
