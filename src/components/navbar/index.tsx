@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Button, Image, Flex, Box, Spacer } from '@chakra-ui/react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { useAppSelector } from '@/src/hooks';
+import { useAppSelector } from '../../../src/hooks';
 import { GrLogout } from 'react-icons/gr';
 
 type IProps = {

@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import checkEnvironment from '@/util/check-environment';
-import { SingleUser } from '@/src/types/user';
-import { CardSlice } from '@/src/types/cards';
+import checkEnvironment from '../../util/check-environment';
+import { SingleUser } from '../../src/types/user';
+import { CardSlice } from '../../src/types/cards';
 
-import { BoardSlice } from '@/src/types/boards';
+import { BoardSlice } from '../../src/types/boards';
 import shortId from 'shortid';
 import findIndex from 'lodash.findindex';
 

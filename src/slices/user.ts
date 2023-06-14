@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import checkEnvironment from '@/util/check-environment';
-import { UserDetail } from '@/src/types/user';
+import checkEnvironment from '../../util/check-environment';
+import { UserDetail } from '../../src/types/user';
 
 const initialState: UserDetail = {
   id: '',

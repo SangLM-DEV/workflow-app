@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { setOrGetStore } from '@/util/initialise-store';
-import verifyToken from '@/util/verify-token';
-import verifyEmail from '@/util/verify-email';
+import { setOrGetStore } from '../../util/initialise-store';
+import verifyToken from '../../util/verify-token';
+import verifyEmail from '../../util/verify-email';
 
 const WithRegisterLayout = (App) => {
   return class AppWithRegisterLayout extends Component {

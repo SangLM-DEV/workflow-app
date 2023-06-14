@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { setOrGetStore } from '@/util/initialise-store';
-import { fetchColumns } from '@/src/slices/columns';
-import { fetchBoard } from '@/src/slices/board';
-import { fetchCards } from '@/src/slices/cards';
+import { setOrGetStore } from '../../util/initialise-store';
+import { fetchColumns } from '../../src/slices/columns';
+import { fetchBoard } from '../../src/slices/board';
+import { fetchCards } from '../../src/slices/cards';
 import { resetServerContext } from 'react-beautiful-dnd';
 
 const WithBoardLayout = (App) => {

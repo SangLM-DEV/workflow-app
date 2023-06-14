@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import shortId from 'shortid';
-import checkEnvironment from '@/util/check-environment';
+import checkEnvironment from '../../../util/check-environment';
 import { useRouter } from 'next/router';
 
 const SignUp = (): JSX.Element => {

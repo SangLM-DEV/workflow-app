@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '@/util/mongodb';
-import checkEnvironment from '@/util/check-environment';
+import { connectToDatabase } from '../../util/mongodb';
+import checkEnvironment from '../../util/check-environment';
 import sgMail from '@sendgrid/mail';
 import shortId from 'shortid';
 import uniqid from 'uniqid';
@@ -13,17 +13,18 @@ const sendMail = (email, res, emailData, user) => {
     to: email,
     from: 'kaimedia.creator@gmail.com',
     subject: 'You are invited to join to a WorkFlow board',
-    html: `<div>
+    html: `
+    <div>
       <div style="height:100px; background-color:#26292c; color: white">
-        <p>WorkFlowe</p>
+        <p>${email} đã mời bạn tham gia vào dự án ${emailData.boardId}!</p>
       <div>
       <div style="height:200px; background-color:#0079bf;">
         <a href='${url}/${page}?token=${emailData.token}&email=${email}&boardId=${emailData.boardId}'>Join</a>
       </div>
       <div style="height:100px; background-color:#26292c;">
-
       </div>
-    </div>`
+    </div>
+    `
   };
 
   sgMail

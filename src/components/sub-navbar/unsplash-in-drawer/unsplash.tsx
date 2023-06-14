@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createApi } from 'unsplash-js';
-import { updateBoardDetail } from '@/src/slices/board';
+import { updateBoardDetail } from '../../../../src/slices/board';
 import { useDispatch } from 'react-redux';
 import { Box, InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react';
 

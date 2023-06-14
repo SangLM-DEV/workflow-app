@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { connectToDatabase } from '@/util/mongodb';
+import { connectToDatabase } from '../../../util/mongodb';
 import { compare } from 'bcrypt';
 import { serialize } from 'cookie';
 

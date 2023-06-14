@@ -11,8 +11,8 @@ import {
   useDisclosure,
   Input
 } from '@chakra-ui/react';
-import checkEnvironment from '@/util/check-environment';
-import { useAppSelector } from '@/src/hooks';
+import checkEnvironment from '../../../../util/check-environment';
+import { useAppSelector } from '../../../../src/hooks';
 
 const host = checkEnvironment();
 

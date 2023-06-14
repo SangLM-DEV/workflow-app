@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import checkEnvironment from '@/util/check-environment';
-import { SingleUser } from '@/src/types/user';
-import { ColumnsSlice } from '@/src/types/columns';
+import checkEnvironment from '../../util/check-environment';
+import { SingleUser } from '../../src/types/user';
+import { ColumnsSlice } from '../../src/types/columns';
 import findIndex from 'lodash.findindex';
 
-import { BoardSlice } from '@/src/types/boards';
+import { BoardSlice } from '../../src/types/boards';
 
 const initialState = {
   columns: [],

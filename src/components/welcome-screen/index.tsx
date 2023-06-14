@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '@/src/components/navbar';
+import NavBar from '../../../src/components/navbar';
 import { Box, Image, Flex, Text } from '@chakra-ui/react';
 
 const WelcomeScreen = (): JSX.Element => {

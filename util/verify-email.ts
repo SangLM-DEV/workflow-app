@@ -1,4 +1,4 @@
-import checkEnvironment from '@/util/check-environment';
+import checkEnvironment from '../util/check-environment';
 
 const verifyToken = async (ctx) => {
   const { email } = ctx.query;

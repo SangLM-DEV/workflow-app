@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import { useAppSelector } from '@/src/hooks';
+import { useAppSelector } from '../../../../../src/hooks';
 
 type Props = {
   addColumn: () => void;

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Box, Badge, Avatar } from '@chakra-ui/react';
 import { Draggable } from 'react-beautiful-dnd';
-import { CardDetail } from '@/src/types/cards';
-import { useAppSelector } from '@/src/hooks';
+import { CardDetail } from '../../../../src/types/cards';
+import { useAppSelector } from '../../../../src/hooks';
 
 type Props = {
   showCardDetail: (cardId: string) => void;
