@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import checkEnvironment from '@/util/check-environment';
-import { BoardSlice } from '@/src/types/boards';
+import checkEnvironment from '../../util/check-environment';
+import { BoardSlice } from '../../src/types/boards';
 
 const initialState = {
   board: {

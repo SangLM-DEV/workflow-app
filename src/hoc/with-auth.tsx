@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { setOrGetStore } from '@/util/initialise-store';
-import isValidUser from '@/util/is-valid-user';
-import { updateUserData, fetchUser } from '@/src/slices/user';
+import { setOrGetStore } from '../../util/initialise-store';
+import isValidUser from '../../util/is-valid-user';
+import { updateUserData, fetchUser } from '../../src/slices/user';
 
 const WithAuth = (App) => {
   return class AppWithAuth extends Component {

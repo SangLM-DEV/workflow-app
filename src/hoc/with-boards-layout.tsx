@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { setOrGetStore } from '@/util/initialise-store';
-import { fetchBoards } from '@/src/slices/boards';
+import { setOrGetStore } from '../../util/initialise-store';
+import { fetchBoards } from '../../src/slices/boards';
 
 const WithBoardsLayout = (App) => {
   return class AppWithBoardsLayout extends Component {

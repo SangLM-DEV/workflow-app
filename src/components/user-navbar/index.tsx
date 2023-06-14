@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { useAppSelector } from '@/src/hooks';
+import { useAppSelector } from '../../../src/hooks';
 import { AiOutlineHome } from 'react-icons/ai';
 import { SiTrello } from 'react-icons/si';
 

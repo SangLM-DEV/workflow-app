@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import boardsSlice from '@/src/slices/boards';
-import userSlice from '@/src/slices/user';
-import boardSlice from '@/src/slices/board';
-import columnsSlice from '@/src/slices/columns';
-import cardsSlice from '@/src/slices/cards';
-import usersSlice from '@/src/slices/users';
+import boardsSlice from '../src/slices/boards';
+import userSlice from '../src/slices/user';
+import boardSlice from '../src/slices/board';
+import columnsSlice from '../src/slices/columns';
+import cardsSlice from '../src/slices/cards';
+import usersSlice from '../src/slices/users';
 
 const createStore = (preloadedState = {}) => {
   return configureStore({

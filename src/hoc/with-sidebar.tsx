@@ -7,7 +7,7 @@ import {
   AiOutlineBuild
 } from 'react-icons/ai';
 import Link from 'next/link';
-import NavBar from '@/src/components/navbar';
+import NavBar from '../../src/components/navbar';
 
 const withSidebar = (App, props) => {
   return class BoardWithSidebar extends Component {

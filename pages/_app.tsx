@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import '@/src/styles/default.css';
+import '../src/styles/default.css';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import NextNprogress from 'nextjs-progressbar';

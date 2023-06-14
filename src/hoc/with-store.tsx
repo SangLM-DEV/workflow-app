@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { setOrGetStore } from '@/util/initialise-store';
-import { RootState } from '@/src/store';
+import { setOrGetStore } from '../../util/initialise-store';
+import { RootState } from '../../src/store';
 
 type Props = {
   reduxState: RootState;
