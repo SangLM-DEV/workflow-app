@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '@/util/mongodb';
-import checkEnvironment from '@/util/check-environment';
+import { connectToDatabase } from '../../util/mongodb';
+import checkEnvironment from '../../util/check-environment';
 import sgMail from '@sendgrid/mail';
 import shortId from 'shortid';
 import uniqid from 'uniqid';

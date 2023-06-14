@@ -10,13 +10,13 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { saveBoard } from '@/src/slices/board';
+import { saveBoard } from '../../../../src/slices/board';
 
 import PropType from 'prop-types';
 import React from 'react';
 import { BsImages } from 'react-icons/bs';
-import Unsplash from '@/src/components/sub-navbar/unsplash-in-drawer/unsplash';
-import { useAppSelector } from '@/src/hooks';
+import Unsplash from '../../../../src/components/sub-navbar/unsplash-in-drawer/unsplash';
+import { useAppSelector } from '../../../../src/hooks';
 
 const SubNavbar = (): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -1,18 +1,18 @@
 import React, { useState, FC } from 'react';
 import { Box, useDisclosure } from '@chakra-ui/react';
-import AddColumnButton from '@/src/components/board/columns/buttons/add-column-button';
-import CardDetailsModal from '@/src/components/board/columns/modals/card-details-modal';
-import Column from '@/src/components/board/columns/column';
-import { CardDetail } from '@/src/types/cards';
-import { useAppSelector } from '@/src/hooks';
+import AddColumnButton from '../../../../src/components/board/columns/buttons/add-column-button';
+import CardDetailsModal from '../../../../src/components/board/columns/modals/card-details-modal';
+import Column from '../../../../src/components/board/columns/column';
+import { CardDetail } from '../../../../src/types/cards';
+import { useAppSelector } from '../../../../src/hooks';
 import { useDispatch } from 'react-redux';
 import {
   addColumnToBoard,
   fetchColumns,
   updateColumnSequenceToLocalState,
   updateColumnSequence
-} from '@/src/slices/columns';
-import { updateCardSequence, updateCardSequenceToLocalState } from '@/src/slices/cards';
+} from '../../../../src/slices/columns';
+import { updateCardSequence, updateCardSequenceToLocalState } from '../../../../src/slices/cards';
 
 import shortId from 'shortid';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';

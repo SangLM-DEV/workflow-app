@@ -11,9 +11,9 @@ import {
   MenuItem
 } from '@chakra-ui/react';
 import { MdLabelOutline } from 'react-icons/md';
-import { updateCard } from '@/src/slices/cards';
+import { updateCard } from '../../../../../src/slices/cards';
 import { useDispatch } from 'react-redux';
-import { Label } from '@/src/types/cards';
+import { Label } from '../../../../../src/types/cards';
 
 type IProps = {
   id: string;

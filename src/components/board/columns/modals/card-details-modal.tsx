@@ -16,13 +16,13 @@ import {
   Badge
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { CardDetail } from '@/src/types/cards';
-import { deleteCard, fetchCards, updateCard } from '@/src/slices/cards';
-import { useAppSelector } from '@/src/hooks';
+import { CardDetail } from '../../../../../src/types/cards';
+import { deleteCard, fetchCards, updateCard } from '../../../../../src/slices/cards';
+import { useAppSelector } from '../../../../../src/hooks';
 import { AiOutlineDelete, AiOutlineClose, AiOutlineLaptop } from 'react-icons/ai';
 import { GrTextAlignFull } from 'react-icons/gr';
-import CardLabel from '@/src/components/board/columns/modals/card-labels-menu';
-import QuillEditor from '@/src/components/quill-editor';
+import CardLabel from '../../../../../src/components/board/columns/modals/card-labels-menu';
+import QuillEditor from '../../../../../src/components/quill-editor';
 import { AiOutlineDown } from 'react-icons/ai';
 
 type Props = {

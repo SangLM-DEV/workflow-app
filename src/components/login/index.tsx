@@ -17,9 +17,9 @@ import {
   AlertIcon
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import checkEnvironment from '@/util/check-environment';
+import checkEnvironment from '../../../util/check-environment';
 import { useRouter } from 'next/router';
-import inviteUser from '@/util/invite-user';
+import inviteUser from '../../../util/invite-user';
 
 const Login = () => {
   const [values, setValues] = useState({

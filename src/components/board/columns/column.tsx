@@ -13,16 +13,16 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { FiMoreHorizontal } from 'react-icons/fi';
-import Cards from '@/src/components/board/columns/cards';
+import Cards from '../../../../src/components/board/columns/cards';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { GrDrag } from 'react-icons/gr';
 
-import { deleteColumn, fetchColumns, updateColumn } from '@/src/slices/columns';
-import { addCard, fetchCards } from '@/src/slices/cards';
+import { deleteColumn, fetchColumns, updateColumn } from '../../../../src/slices/columns';
+import { addCard, fetchCards } from '../../../../src/slices/cards';
 import debounce from 'lodash.debounce';
-import { CardDetail } from '@/src/types/cards';
-import { useAppSelector } from '@/src/hooks';
+import { CardDetail } from '../../../../src/types/cards';
+import { useAppSelector } from '../../../../src/hooks';
 
 const Column = ({ showCardDetail, column, index, id, cards }): JSX.Element => {
   const dispatch = useDispatch();

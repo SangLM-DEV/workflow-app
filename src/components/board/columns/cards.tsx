@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import PropTypes from 'prop-types';
-import { CardDetail } from '@/src/types/cards';
-import Card from '@/src/components/board/columns/card';
+import { CardDetail } from '../../../../src/types/cards';
+import Card from '../../../../src/components/board/columns/card';
 
 type Props = {
   cards: CardDetail[];

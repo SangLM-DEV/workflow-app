@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { connectToDatabase } from '@/util/mongodb';
+import { connectToDatabase } from '../../../util/mongodb';
 import { hash } from 'bcrypt';
 
 const SALTROUNDS = 10;

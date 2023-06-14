@@ -15,11 +15,11 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '@/src/hooks';
-import { updateBoardDetail, resetBoard } from '@/src/slices/board';
-import { createBoard } from '@/src/slices/boards';
+import { useAppSelector } from '../../../src/hooks';
+import { updateBoardDetail, resetBoard } from '../../../src/slices/board';
+import { createBoard } from '../../../src/slices/boards';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { fetchBoards } from '@/src/slices/boards';
+import { fetchBoards } from '../../../src/slices/boards';
 
 import shortId from 'shortid';
 

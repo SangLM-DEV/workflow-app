@@ -1,14 +1,14 @@
 import { Box, Heading, Avatar, Tooltip } from '@chakra-ui/react';
 
 import PropType from 'prop-types';
-import BoardSettings from '@/src/components/sub-navbar/board-settings';
-import InviteModal from '@/src/components/sub-navbar/invite-user/modal';
+import BoardSettings from '../../../src/components/sub-navbar/board-settings';
+import InviteModal from '../../../src/components/sub-navbar/invite-user/modal';
 import React, { useEffect } from 'react';
-import { useAppSelector } from '@/src/hooks';
+import { useAppSelector } from '../../../src/hooks';
 import { useDispatch } from 'react-redux';
-import { fetchUsers } from '@/src/slices/users';
+import { fetchUsers } from '../../../src/slices/users';
 
-import UnsplashDrawer from '@/src/components/sub-navbar/unsplash-in-drawer';
+import UnsplashDrawer from '../../../src/components/sub-navbar/unsplash-in-drawer';
 
 const SubNavbar = (): JSX.Element => {
   const board = useAppSelector((state) => state.board.board);
